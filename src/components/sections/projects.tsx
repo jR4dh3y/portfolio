@@ -7,39 +7,41 @@ import Link from 'next/link';
 const projects = [
   {
     title: 'UNet Audio Filter',
-    description: 'An end-to-end speech enhancement pipeline with a CLI and Streamlit app, using PyTorch for ML-heavy audio processing.',
-    image: 'https://picsum.photos/600/400?random=1',
-    tags: ['Python', 'PyTorch', 'Streamlit', 'Audio DSP'],
-    liveUrl: '#',
-    githubUrl: '#',
-    aiHint: 'audio waveform',
+    description: 'U-Net based speech enhancement and noise reduction pipeline for audio with a CLI and Streamlit app, using PyTorch for ML-heavy audio processing.',
+    image: 'https://raw.githubusercontent.com/jR4dh3y/unet-audiofilter/refs/heads/master/presentation/audio_comparison.png',
+    tags: ['Python','U-Net', 'PyTorch', 'Streamlit', 'Audio DSP'],
+    liveUrl: 'https://aiclearvoice.streamlit.app/',
+    githubUrl: 'https://github.com/jR4dh3y/unet-audiofilter',
   },
   {
     title: 'Hotel Booking',
-    description: 'A full-stack college project with a Svelte frontend, Node/Express backend, and MySQL database, including a deployed demo.',
-    image: 'https://picsum.photos/600/400?random=2',
+    description: 'A full-stack web application with a Svelte frontend, Node/Express backend, and MySQL database, including a deployed demo.',
+    image: 'https://raw.githubusercontent.com/jR4dh3y/hotel-booking/refs/heads/main/ss/landing.png',
     tags: ['Svelte', 'Node.js', 'Express', 'MySQL'],
-    liveUrl: '#',
-    githubUrl: '#',
-    aiHint: 'hotel booking interface',
+    liveUrl: 'https://hotel-booking-amber-nine.vercel.app/',
+    githubUrl: 'https://github.com/jR4dh3y/hotel-booking',
   },
   {
-    title: 'tt - Sports Match Organizer',
-    description: 'A React Native app using Expo and Tamagui to organize and join sports matches, with location search and social features.',
-    image: 'https://picsum.photos/600/400?random=3',
-    tags: ['React Native', 'Expo', 'Tamagui', 'TypeScript'],
-    liveUrl: '#',
-    githubUrl: '#',
-    aiHint: 'mobile app screenshot',
+    title: 'Student Dashboard',
+    description: 'Dashboard for managing students, events, and points in a developer community, with a ranked leaderboard, student detail pages, and owner/admin-guarded profile updates with points history.',
+    image: '',
+    tags: ['React', 'Node.js', 'Express', 'Firebase'],
+    liveUrl: 'https://student-dashboard-amber-nine.vercel.app/',
+    githubUrl: 'https://github.com/jR4dh3y/student-dashboard',
   },
   {
-    title: 'dots-niri',
-    description: 'Polished Arch Linux dotfiles for the niri window manager, featuring an automated installer and package lists.',
-    image: 'https://picsum.photos/600/400?random=4',
-    tags: ['Arch Linux', 'Shell', 'niri', 'Dotfiles'],
-    liveUrl: '#',
-    githubUrl: '#',
-    aiHint: 'linux desktop',
+    title: 'Terminal Doom',
+    description: 'This project is a terminal-based first-person shooter inspired by Doom, implemented in C++ and rendered directly within the terminal using the ncurses library',
+    image: '/assets/doom.png',
+    tags: ['C++', 'ncurses','cmake', 'Game Development'],
+    githubUrl: 'https://github.com/jR4dh3y/doom-in-terminal',
+  },
+  {
+    title: 'WallpyGui',
+    description: 'GTK4-based wallpaper manager tailored for Wayland environments—specifically designed to work with Niri and Hyprland window managers. It offers a responsive, visually appealing interface for both image and video wallpapers',
+    image: '/assets/image.png',
+    tags: ['Linux', 'GTK4', 'Wayland'],
+    githubUrl: 'https://github.com/jR4dh3y/wallpygui',
   },
 ];
 
@@ -64,7 +66,6 @@ export default function Projects() {
                     alt={project.title}
                     fill
                     className="object-cover"
-                    data-ai-hint={project.aiHint}
                   />
                 </div>
               </CardHeader>
@@ -78,9 +79,11 @@ export default function Projects() {
                 </div>
               </CardContent>
               <CardFooter className="p-6 pt-0">
-                <Button asChild className="mr-2 bg-accent text-accent-foreground hover:bg-accent/90">
-                  <Link href={project.liveUrl}>Live Demo</Link>
-                </Button>
+                {project.liveUrl && project.liveUrl.trim() !== '' && project.liveUrl !== '#' && (
+                  <Button asChild className="mr-2 bg-accent text-accent-foreground hover:bg-accent/90">
+                    <Link href={project.liveUrl}>Live Demo</Link>
+                  </Button>
+                )}
                 <Button variant="outline" asChild>
                   <Link href={project.githubUrl}>GitHub</Link>
                 </Button>

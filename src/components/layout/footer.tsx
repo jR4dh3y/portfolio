@@ -11,9 +11,6 @@ export default function Footer() {
   return (
     <footer className="border-t border-border/40 py-6">
       <div className="container flex flex-col items-center justify-between gap-4 sm:flex-row">
-        <p className="text-sm text-muted-foreground">
-          © {new Date().getFullYear()} All rights reserved.
-        </p>
         <div className="flex items-center gap-4">
           {socialLinks.map(({ icon: Icon, href, label }) => (
             <Link key={label} href={href} target="_blank" rel="noopener noreferrer">

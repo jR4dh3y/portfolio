@@ -8,7 +8,7 @@ export default function About() {
           <div className="order-2 lg:order-1">
             <h2 className="font-headline text-4xl font-extrabold tracking-tight sm:text-5xl">About Me</h2>
             <p className="mt-6 text-lg text-muted-foreground">
-              I'm a developer comfortable across the full stack, with experience in frontend, backend, and machine learning. I enjoy building end-to-end applications and have a knack for DevOps and system configuration.
+              I'm a developer comfortable across the full stack, with experience in frontend, backend, and machine learning. I enjoy building end-to-end applications and end up spending a lot of my time on ricing my setup.
             </p>
             <p className="mt-4 text-lg text-muted-foreground">
               My work includes full-stack web apps using Svelte and Node.js, mobile applications with React Native, and ML projects like a speech enhancement pipeline using PyTorch. I also have a passion for Linux and have created reproducible dotfile installers.
@@ -20,11 +20,10 @@ export default function About() {
           <div className="order-1 lg:order-2 flex justify-center">
             <div className="relative h-96 w-80">
               <Image
-                src="https://picsum.photos/600/800"
-                alt="A photo of the developer"
+                src="/assets/about.jpg"
+                alt=""
                 fill
                 className="rounded-lg object-cover shadow-lg transition-transform duration-300 ease-in-out hover:scale-105"
-                data-ai-hint="person working"
               />
             </div>
           </div>

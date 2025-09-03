@@ -6,8 +6,8 @@ import ParticleSystem from '@/components/common/particle-system';
 
 const socialLinks = [
   { icon: Github, href: 'https://github.com/jr4dh3y', label: 'Github' },
-  { icon: Linkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
-  { icon: Twitter, href: 'https://twitter.com', label: 'Twitter' },
+  { icon: Linkedin, href: 'https://linkedin.com/in/radheykalra', label: 'LinkedIn' },
+  { icon: Twitter, href: 'https://twitter.com/jr4dh3y', label: 'Twitter' },
 ];
 
 async function getGithubProfile(username: string) {
@@ -36,25 +36,25 @@ export default async function Hero() {
     <section id="home" className="relative h-[calc(100vh-3.5rem)] min-h-[600px] overflow-hidden">
       <ParticleSystem />
       <div className="container relative z-10 flex h-full items-center justify-center">
-        <div className="flex flex-col items-center gap-8 text-center md:flex-row md:text-left bg-background/60 backdrop-blur-sm p-8 rounded-lg">
+        <div className="flex flex-col items-center gap-8 text-center md:flex-row md:text-left rounded-2xl p-8 bg-background/40 backdrop-blur-xl backdrop-saturate-150 border border-white/20 shadow-2xl ring-1 ring-white/10">
           <div className="relative h-48 w-48 md:h-64 md:w-64">
             <Image
               src={profilePictureUrl}
               alt="Profile Picture"
               width={256}
               height={256}
-              className="rounded-full border-4 border-primary/20 object-cover shadow-lg"
+              className="rounded-full border-4 border-primary/20 object-cover shadow-lg ring-2 ring-primary/20"
               priority
               data-ai-hint="professional portrait"
             />
           </div>
           <div className="max-w-xl">
-            <p className="mb-2 text-lg font-medium text-primary">Hello, I'm a</p>
-            <h1 className="mb-4 font-headline text-5xl font-extrabold tracking-tight md:text-7xl">
-              Full-Stack Developer
+            <p className="mb-2 text-lg font-medium text-primary">Hello, I'm</p>
+            <h1 className="mb-4 font-headline text-5xl font-extrabold tracking-tight md:text-7xl bg-gradient-to-br from-primary via-primary/80 bg-clip-text text-transparent drop-shadow">
+              Radhey Kalra
             </h1>
-            <p className="mb-6 text-lg text-muted-foreground">
-              I build full-stack apps, mobile solutions, and work on ML/audio processing. I'm fluent in DevOps and love creating reproducible systems.
+            <p className="mb-6 text-lg text-foreground/80">
+              I build full-stack apps, mobile solutions, and work on ML/audio processing. I'm fluent in DevOps and love ricing my setup.
             </p>
             <div className="mb-8 flex justify-center gap-4 md:justify-start">
               {socialLinks.map(({ icon: Icon, href, label }) => (

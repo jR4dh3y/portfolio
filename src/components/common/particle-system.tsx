@@ -25,7 +25,7 @@ const ParticleSystem = () => {
     currentMount.appendChild(renderer.domElement);
 
     // Particles
-    const particlesCount = 5000;
+    const particlesCount = 1000;
     const positions = new Float32Array(particlesCount * 3);
 
     for (let i = 0; i < particlesCount * 3; i++) {

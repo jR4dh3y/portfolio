@@ -15,32 +15,81 @@ const skillCategories: SkillCategory[] = [
   {
     title: 'Languages',
     icon: Code,
-    skills: [{ name: 'Python' }, { name: 'TypeScript/JavaScript' }, { name: 'Svelte' }, { name: 'C/C++' }, { name: 'QML/Shell' }],
+    skills: [
+      { name: 'Python' },
+      { name: 'TypeScript/JavaScript' },
+      { name: 'C/C++' },
+      { name: 'QML/Shell' },
+      { name: 'SQL' },
+      { name: 'Bash' },
+    ],
   },
   {
     title: 'Frontend & Mobile',
     icon: Bot,
-    skills: [{ name: 'React Native' }, { name: 'Expo' }, { name: 'Tamagui' }, { name: 'Node/Express' }],
+    skills: [
+      { name: 'React/Next.js' },
+      { name: 'React Native' },
+      { name: 'Expo' },
+      { name: 'Svelte' },
+      { name: 'Tailwind CSS' },
+      { name: 'Node/Express' },
+    ],
   },
   {
-    title: 'ML & Audio',
+    title: 'AI/ML',
     icon: BrainCircuit,
-    skills: [{ name: 'PyTorch' }, { name: 'Streamlit' }, { name: 'Audio DSP' }, { name: 'U-Net' }],
+    skills: [
+      { name: 'PyTorch' },
+      { name: 'Diffusion' },
+      { name: 'U-Net' },
+      { name: 'Transformers' },
+      { name: 'scikit-learn' },
+      { name: 'NumPy' },
+      { name: 'Pandas' },
+    ],
   },
   {
     title: 'Backend & Databases',
     icon: Server,
-    skills: [{ name: 'Node.js' }, { name: 'Express' }, { name: 'MySQL' }],
+    skills: [
+      { name: 'Node.js' },
+      { name: 'Express' },
+      { name: 'REST' },
+      { name: 'GraphQL' },
+      { name: 'WebSockets' },
+      { name: 'PostgreSQL' },
+      { name: 'MySQL' },
+    ],
   },
   {
     title: 'DevOps & Tooling',
     icon: GitMerge,
-    skills: [{ name: 'Git & GitHub' }, { name: 'Arch/Nix' }, { name: 'niri' }, { name: 'Home-Manager' }],
+    skills: [
+      { name: 'Git & GitHub' },
+      { name: 'Docker' },
+      { name: 'CI/CD' },
+      { name: 'Vercel' },
+    ],
   },
   {
     title: 'Systems & OS',
     icon: Shell,
-    skills: [{ name: 'Linux' }, { name: 'ncurses' }, { name: 'OS Fundamentals' }],
+    skills: [
+      { name: 'Linux' },
+      { name: 'Bash' },
+      { name: 'systemd' },
+      { name: 'Networking' },
+    ],
+  },
+  {
+    title: 'Cloud & Infrastructure',
+    icon: Server,
+    skills: [
+      { name: 'AWS' },
+      { name: 'GCP' },
+      { name: 'Kubernetes' },
+    ],
   },
 ];
 
