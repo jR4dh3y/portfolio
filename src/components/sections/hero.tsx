@@ -5,12 +5,33 @@ import Link from 'next/link';
 import ParticleSystem from '@/components/common/particle-system';
 
 const socialLinks = [
-  { icon: Github, href: 'https://github.com', label: 'Github' },
+  { icon: Github, href: 'https://github.com/jr4dh3y', label: 'Github' },
   { icon: Linkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
   { icon: Twitter, href: 'https://twitter.com', label: 'Twitter' },
 ];
 
-export default function Hero() {
+async function getGithubProfile(username: string) {
+  try {
+    const response = await fetch(`https://api.github.com/users/${username}`, {
+      next: { revalidate: 3600 } // Revalidate every hour
+    });
+    if (!response.ok) {
+      console.error('Failed to fetch GitHub profile');
+      return null;
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching GitHub profile:', error);
+    return null;
+  }
+}
+
+
+export default async function Hero() {
+  const githubProfile = await getGithubProfile('jr4dh3y');
+  const profilePictureUrl = githubProfile?.avatar_url || "https://picsum.photos/400/400";
+
   return (
     <section id="home" className="relative h-[calc(100vh-3.5rem)] min-h-[600px] overflow-hidden">
       <ParticleSystem />
@@ -18,7 +39,7 @@ export default function Hero() {
         <div className="flex flex-col items-center gap-8 text-center md:flex-row md:text-left bg-background/60 backdrop-blur-sm p-8 rounded-lg">
           <div className="relative h-48 w-48 md:h-64 md:w-64">
             <Image
-              src="https://picsum.photos/400/400"
+              src={profilePictureUrl}
               alt="Profile Picture"
               width={256}
               height={256}
