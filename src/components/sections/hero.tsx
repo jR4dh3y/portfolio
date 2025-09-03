@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Github, Linkedin, Twitter, ArrowDown } from 'lucide-react';
 import Link from 'next/link';
+import ParticleSystem from '@/components/common/particle-system';
 
 const socialLinks = [
   { icon: Github, href: 'https://github.com', label: 'Github' },
@@ -11,7 +12,8 @@ const socialLinks = [
 
 export default function Hero() {
   return (
-    <section id="home" className="relative h-[calc(100vh-3.5rem)] min-h-[600px]">
+    <section id="home" className="relative h-[calc(100vh-3.5rem)] min-h-[600px] overflow-hidden">
+      <ParticleSystem />
       <div className="container relative z-10 flex h-full items-center justify-center">
         <div className="flex flex-col items-center gap-8 text-center md:flex-row md:text-left">
           <div className="relative h-48 w-48 md:h-64 md:w-64">
@@ -46,7 +48,7 @@ export default function Hero() {
           </div>
         </div>
       </div>
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2">
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10">
         <Link href="#projects" aria-label="Scroll to projects">
           <ArrowDown className="h-8 w-8 animate-bounce text-primary" />
         </Link>
