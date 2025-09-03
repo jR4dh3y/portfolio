@@ -1,6 +1,6 @@
 'use client';
 
-import { Menu, TerminalSquare } from 'lucide-react';
+import { Menu, TerminalSquare, MapPin } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
@@ -38,7 +38,11 @@ export default function Header() {
             ))}
           </nav>
         </div>
-        <div className="flex flex-1 items-center justify-end space-x-2">
+        <div className="flex flex-1 items-center justify-end space-x-4">
+          <div className="hidden items-center gap-2 text-sm text-muted-foreground sm:flex">
+            <MapPin className="h-4 w-4" />
+            <span>San Francisco, CA</span>
+          </div>
           <Sheet open={isSheetOpen} onOpenChange={setSheetOpen}>
             <SheetTrigger asChild>
               <Button variant="ghost" className="md:hidden">
