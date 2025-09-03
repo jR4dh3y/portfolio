@@ -41,7 +41,7 @@ export default function Header() {
         <div className="flex flex-1 items-center justify-end space-x-4">
           <div className="hidden items-center gap-2 text-sm text-muted-foreground sm:flex">
             <MapPin className="h-4 w-4" />
-            <span>San Francisco, CA</span>
+            <span>Jammu, India</span>
           </div>
           <Sheet open={isSheetOpen} onOpenChange={setSheetOpen}>
             <SheetTrigger asChild>
