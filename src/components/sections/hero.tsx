@@ -15,7 +15,7 @@ export default function Hero() {
     <section id="home" className="relative h-[calc(100vh-3.5rem)] min-h-[600px] overflow-hidden">
       <ParticleSystem />
       <div className="container relative z-10 flex h-full items-center justify-center">
-        <div className="flex flex-col items-center gap-8 text-center md:flex-row md:text-left">
+        <div className="flex flex-col items-center gap-8 text-center md:flex-row md:text-left bg-background/60 backdrop-blur-sm p-8 rounded-lg">
           <div className="relative h-48 w-48 md:h-64 md:w-64">
             <Image
               src="https://picsum.photos/400/400"
