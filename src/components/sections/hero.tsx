@@ -2,12 +2,11 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Github, Linkedin, Twitter, ArrowDown } from 'lucide-react';
 import Link from 'next/link';
-import { GithubSummaryForm } from '../github-summary-form';
 
 const socialLinks = [
-  { icon: Github, href: '#', label: 'Github' },
-  { icon: Linkedin, href: '#', label: 'LinkedIn' },
-  { icon: Twitter, href: '#', label: 'Twitter' },
+  { icon: Github, href: 'https://github.com', label: 'Github' },
+  { icon: Linkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
+  { icon: Twitter, href: 'https://twitter.com', label: 'Twitter' },
 ];
 
 export default function Hero() {
@@ -18,7 +17,7 @@ export default function Hero() {
           <div className="relative h-48 w-48 md:h-64 md:w-64">
             <Image
               src="https://picsum.photos/400/400"
-              alt="Radhey's Profile Picture"
+              alt="Profile Picture"
               width={256}
               height={256}
               className="rounded-full border-4 border-primary/20 object-cover shadow-lg"
@@ -27,26 +26,23 @@ export default function Hero() {
             />
           </div>
           <div className="max-w-xl">
-            <p className="mb-2 text-lg font-medium text-primary">Hello, I'm</p>
+            <p className="mb-2 text-lg font-medium text-primary">Hello, I'm a</p>
             <h1 className="mb-4 font-headline text-5xl font-extrabold tracking-tight md:text-7xl">
-              Radhey
+              Full-Stack Developer
             </h1>
             <p className="mb-6 text-lg text-muted-foreground">
-              A passionate developer creating modern and responsive web applications. I turn ideas into reality with code.
+              I build full-stack apps, mobile solutions, and work on ML/audio processing. I'm fluent in DevOps and love creating reproducible systems.
             </p>
             <div className="mb-8 flex justify-center gap-4 md:justify-start">
               {socialLinks.map(({ icon: Icon, href, label }) => (
                 <Button key={label} variant="outline" size="icon" asChild>
-                  <Link href={href}>
+                  <Link href={href} target="_blank" rel="noopener noreferrer">
                     <Icon className="h-5 w-5" />
                     <span className="sr-only">{label}</span>
                   </Link>
                 </Button>
               ))}
             </div>
-            
-            <GithubSummaryForm />
-
           </div>
         </div>
       </div>

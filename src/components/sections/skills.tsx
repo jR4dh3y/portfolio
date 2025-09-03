@@ -1,4 +1,4 @@
-import { Code, Bot, Server, Database, PenTool, GitMerge,type LucideIcon } from 'lucide-react';
+import { Code, Bot, Server, Database, PenTool, GitMerge,type LucideIcon, BrainCircuit, Shell } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 interface Skill {
@@ -15,32 +15,32 @@ const skillCategories: SkillCategory[] = [
   {
     title: 'Languages',
     icon: Code,
-    skills: [{ name: 'JavaScript' }, { name: 'TypeScript' }, { name: 'HTML5' }, { name: 'CSS3/SCSS' }, { name: 'Python' }],
+    skills: [{ name: 'Python' }, { name: 'TypeScript/JavaScript' }, { name: 'Svelte' }, { name: 'C/C++' }, { name: 'QML/Shell' }],
   },
   {
-    title: 'Frontend',
+    title: 'Frontend & Mobile',
     icon: Bot,
-    skills: [{ name: 'React' }, { name: 'Next.js' }, { name: 'Tailwind CSS' }, { name: 'Redux' }, { name: 'Framer Motion' }],
+    skills: [{ name: 'React Native' }, { name: 'Expo' }, { name: 'Tamagui' }, { name: 'Node/Express' }],
   },
   {
-    title: 'Backend',
+    title: 'ML & Audio',
+    icon: BrainCircuit,
+    skills: [{ name: 'PyTorch' }, { name: 'Streamlit' }, { name: 'Audio DSP' }, { name: 'U-Net' }],
+  },
+  {
+    title: 'Backend & Databases',
     icon: Server,
-    skills: [{ name: 'Node.js' }, { name: 'Express' }, { name: 'REST APIs' }, { name: 'GraphQL' }],
+    skills: [{ name: 'Node.js' }, { name: 'Express' }, { name: 'MySQL' }],
   },
   {
-    title: 'Databases',
-    icon: Database,
-    skills: [{ name: 'MongoDB' }, { name: 'PostgreSQL' }, { name: 'Firebase' }],
-  },
-  {
-    title: 'Tools & DevOps',
+    title: 'DevOps & Tooling',
     icon: GitMerge,
-    skills: [{ name: 'Git & GitHub' }, { name: 'Docker' }, { name: 'Vercel' }, { name: 'Webpack' }],
+    skills: [{ name: 'Git & GitHub' }, { name: 'Arch/Nix' }, { name: 'niri' }, { name: 'Home-Manager' }],
   },
   {
-    title: 'Design',
-    icon: PenTool,
-    skills: [{ name: 'Figma' }, { name: 'Adobe XD' }, { name: 'Canva' }],
+    title: 'Systems & OS',
+    icon: Shell,
+    skills: [{ name: 'Linux' }, { name: 'ncurses' }, { name: 'OS Fundamentals' }],
   },
 ];
 

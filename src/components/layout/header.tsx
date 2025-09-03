@@ -24,7 +24,7 @@ export default function Header() {
         <div className="mr-4 flex items-center">
           <Link href="/" className="mr-6 flex items-center space-x-2">
             <TerminalSquare className="h-6 w-6 text-primary" />
-            <span className="font-bold">Radhey</span>
+            <span className="font-bold">Portfolio</span>
           </Link>
           <nav className="hidden gap-6 text-sm md:flex">
             {navLinks.map(({ href, label }) => (
@@ -49,7 +49,7 @@ export default function Header() {
             <SheetContent side="right" className="pr-0">
               <Link href="/" className="mr-6 flex items-center space-x-2 mb-6" onClick={closeSheet}>
                 <TerminalSquare className="h-6 w-6 text-primary" />
-                <span className="font-bold">Radhey</span>
+                <span className="font-bold">Portfolio</span>
               </Link>
               <div className="flex flex-col space-y-3">
                 {navLinks.map(({ href, label }) => (

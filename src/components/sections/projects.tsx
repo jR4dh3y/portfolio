@@ -6,31 +6,40 @@ import Link from 'next/link';
 
 const projects = [
   {
-    title: 'E-commerce Platform',
-    description: 'A full-featured e-commerce site with product listings, a shopping cart, and a secure checkout process.',
+    title: 'UNet Audio Filter',
+    description: 'An end-to-end speech enhancement pipeline with a CLI and Streamlit app, using PyTorch for ML-heavy audio processing.',
     image: 'https://picsum.photos/600/400?random=1',
-    tags: ['Next.js', 'React', 'TailwindCSS', 'Stripe'],
+    tags: ['Python', 'PyTorch', 'Streamlit', 'Audio DSP'],
     liveUrl: '#',
     githubUrl: '#',
-    aiHint: 'website screenshot',
+    aiHint: 'audio waveform',
   },
   {
-    title: 'Task Management App',
-    description: 'A Kanban-style task manager with drag-and-drop functionality, user authentication, and real-time updates.',
+    title: 'Hotel Booking',
+    description: 'A full-stack college project with a Svelte frontend, Node/Express backend, and MySQL database, including a deployed demo.',
     image: 'https://picsum.photos/600/400?random=2',
-    tags: ['React', 'Firebase', 'Zustand', 'dnd-kit'],
+    tags: ['Svelte', 'Node.js', 'Express', 'MySQL'],
     liveUrl: '#',
     githubUrl: '#',
-    aiHint: 'app interface',
+    aiHint: 'hotel booking interface',
   },
   {
-    title: 'Portfolio Website',
-    description: 'A personal portfolio site to showcase my skills and projects, built with a focus on design and performance.',
+    title: 'tt - Sports Match Organizer',
+    description: 'A React Native app using Expo and Tamagui to organize and join sports matches, with location search and social features.',
     image: 'https://picsum.photos/600/400?random=3',
-    tags: ['Next.js', 'TypeScript', 'Shadcn/UI'],
+    tags: ['React Native', 'Expo', 'Tamagui', 'TypeScript'],
     liveUrl: '#',
     githubUrl: '#',
-    aiHint: 'portfolio design',
+    aiHint: 'mobile app screenshot',
+  },
+  {
+    title: 'dots-niri',
+    description: 'Polished Arch Linux dotfiles for the niri window manager, featuring an automated installer and package lists.',
+    image: 'https://picsum.photos/600/400?random=4',
+    tags: ['Arch Linux', 'Shell', 'niri', 'Dotfiles'],
+    liveUrl: '#',
+    githubUrl: '#',
+    aiHint: 'linux desktop',
   },
 ];
 
@@ -45,7 +54,7 @@ export default function Projects() {
           </p>
         </div>
 
-        <div className="mt-16 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-16 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-2">
           {projects.map((project) => (
             <Card key={project.title} className="flex flex-col overflow-hidden transition-transform duration-300 ease-in-out hover:-translate-y-2">
               <CardHeader className="p-0">
@@ -60,7 +69,7 @@ export default function Projects() {
                 </div>
               </CardHeader>
               <CardContent className="flex-1 p-6">
-                <CardTitle className="mb-2 font-headline text-xl">{project.title}</CardTitle>
+                <CardTitle className="font-headline text-xl">{project.title}</CardTitle>
                 <CardDescription className="mb-4">{project.description}</CardDescription>
                 <div className="flex flex-wrap gap-2">
                   {project.tags.map((tag) => (

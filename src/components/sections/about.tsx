@@ -8,20 +8,20 @@ export default function About() {
           <div className="order-2 lg:order-1">
             <h2 className="font-headline text-4xl font-extrabold tracking-tight sm:text-5xl">About Me</h2>
             <p className="mt-6 text-lg text-muted-foreground">
-              I am a dedicated and results-oriented software developer with a passion for creating intuitive and dynamic user experiences. With a solid foundation in web technologies, I thrive on solving complex problems and continuously learning new skills.
+              I'm a developer comfortable across the full stack, with experience in frontend, backend, and machine learning. I enjoy building end-to-end applications and have a knack for DevOps and system configuration.
             </p>
             <p className="mt-4 text-lg text-muted-foreground">
-              My journey into tech began with a curiosity for how things work, which quickly evolved into a career building robust and scalable applications. I have experience working in agile environments and collaborating with cross-functional teams to deliver high-quality products.
+              My work includes full-stack web apps using Svelte and Node.js, mobile applications with React Native, and ML projects like a speech enhancement pipeline using PyTorch. I also have a passion for Linux and have created reproducible dotfile installers.
             </p>
             <p className="mt-4 text-lg text-muted-foreground">
-              Outside of coding, I enjoy exploring new technologies, contributing to open-source projects, and staying active in the tech community. I'm always excited to take on new challenges and make a meaningful impact through technology.
+              I'm always learning and exploring new technologies. I believe in creating well-documented, maintainable code and shipping complete examples with demos and clear instructions.
             </p>
           </div>
           <div className="order-1 lg:order-2 flex justify-center">
             <div className="relative h-96 w-80">
               <Image
                 src="https://picsum.photos/600/800"
-                alt="A photo of Radhey"
+                alt="A photo of the developer"
                 fill
                 className="rounded-lg object-cover shadow-lg transition-transform duration-300 ease-in-out hover:scale-105"
                 data-ai-hint="person working"
