@@ -33,16 +33,15 @@ const skillCategories: SkillCategory[] = [
       { name: 'Expo' },
       { name: 'Svelte' },
       { name: 'Tailwind CSS' },
-      { name: 'Node/Express' },
     ],
   },
   {
     title: 'AI/ML',
     icon: BrainCircuit,
     skills: [
-      { name: 'PyTorch' },
       { name: 'Diffusion' },
       { name: 'U-Net' },
+      { name: 'PyTorch' },
       { name: 'Transformers' },
       { name: 'scikit-learn' },
       { name: 'NumPy' },

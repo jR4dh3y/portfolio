@@ -24,7 +24,7 @@ const projects = [
   {
     title: 'Student Dashboard',
     description: 'Dashboard for managing students, events, and points in a developer community, with a ranked leaderboard, student detail pages, and owner/admin-guarded profile updates with points history.',
-    image: '',
+    image: '/assets/dash.png',
     tags: ['React', 'Node.js', 'Express', 'Firebase'],
     liveUrl: 'https://student-dashboard-amber-nine.vercel.app/',
     githubUrl: 'https://github.com/jR4dh3y/student-dashboard',
@@ -39,7 +39,7 @@ const projects = [
   {
     title: 'WallpyGui',
     description: 'GTK4-based wallpaper manager tailored for Wayland environments—specifically designed to work with Niri and Hyprland window managers. It offers a responsive, visually appealing interface for both image and video wallpapers',
-    image: '/assets/image.png',
+    image: '/assets/wall.png',
     tags: ['Linux', 'GTK4', 'Wayland'],
     githubUrl: 'https://github.com/jR4dh3y/wallpygui',
   },
