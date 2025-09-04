@@ -6,15 +6,15 @@ export default function About() {
       <div className="container">
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
           <div className="order-2 lg:order-1">
-            <h2 className="font-headline text-4xl font-extrabold tracking-tight sm:text-5xl">About Me</h2>
+            <h2 className="font-headline text-4xlis font-extrabold tracking-tight sm:text-5xl">About Me</h2>
             <p className="mt-6 text-lg text-muted-foreground">
-              I'm a developer comfortable across the full stack, with experience in frontend, backend, and machine learning. I enjoy building end-to-end applications and end up spending a lot of my time on ricing my setup.
+              I'm a Computer Science Engineering student who loves messing around with tech, open source, and building cool stuff. I'm always curious about how things work and end up learning best by experimenting and trying new projects.
             </p>
             <p className="mt-4 text-lg text-muted-foreground">
-              My work includes full-stack web apps using Svelte and Node.js, mobile applications with React Native, and ML projects like a speech enhancement pipeline using PyTorch. I also have a passion for Linux and have created reproducible dotfile installers.
+              I'm efficient at leading groups and getting work done, with experience gained through bootcamps, hackathons, and team projects. These opportunities have helped me improve my communication and leadership skills, manage responsibilities under pressure, and deliver results effectively.
             </p>
             <p className="mt-4 text-lg text-muted-foreground">
-              I'm always learning and exploring new technologies. I believe in creating well-documented, maintainable code and shipping complete examples with demos and clear instructions.
+              When I'm not coding, you'll usually find me listening to or creating music. I love breaking it down and sometimes make my own. I also enjoy exploring new tools, research, and open source projects, because for me, tech is all about sharing, learning, and building things that others can use too.
             </p>
           </div>
           <div className="order-1 lg:order-2 flex justify-center">
