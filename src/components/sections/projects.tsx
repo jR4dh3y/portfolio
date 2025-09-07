@@ -26,8 +26,8 @@ const projects = [
     description: 'Dashboard for managing students, events, and points in a developer community, with a ranked leaderboard, student detail pages, and owner/admin-guarded profile updates with points history.',
     image: '/assets/dash.png',
     tags: ['React', 'Node.js', 'Express', 'Firebase'],
-    liveUrl: 'https://student-dashboard-amber-nine.vercel.app/',
-    githubUrl: 'https://github.com/jR4dh3y/student-dashboard',
+    // liveUrl: '',
+    githubUrl: 'https://github.com/jR4dh3y/unidash',
   },
   {
     title: 'Terminal Doom',
