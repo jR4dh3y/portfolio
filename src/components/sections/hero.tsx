@@ -14,7 +14,7 @@ const socialLinks = [
 async function getGithubProfile(username: string) {
   try {
     const response = await fetch(`https://api.github.com/users/${username}`, {
-      next: { revalidate: 3600 } // Revalidate every hour
+      next: { revalidate: 3600 }
     });
     if (!response.ok) {
       console.error('Failed to fetch GitHub profile');

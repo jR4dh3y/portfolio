@@ -7,7 +7,7 @@ import Link from 'next/link';
 const projects = [
   {
     title: 'UNet Audio Filter',
-    description: 'U-Net based speech enhancement and noise reduction pipeline for audio with a CLI and Streamlit app, using PyTorch for ML-heavy audio processing.',
+    description: 'U-Net based speech enhancement and noise reduction pipeline for audio with a CLI and Streamlit app.',
     image: 'https://raw.githubusercontent.com/jR4dh3y/unet-audiofilter/refs/heads/master/presentation/audio_comparison.png',
     tags: ['Python','U-Net', 'PyTorch', 'Streamlit', 'Audio DSP'],
     liveUrl: 'https://aiclearvoice.streamlit.app/',
@@ -15,7 +15,7 @@ const projects = [
   },
   {
     title: 'Hotel Booking',
-    description: 'A full-stack web application with a Svelte frontend, Node/Express backend, and MySQL database, including a deployed demo.',
+    description: 'A full-stack web application for hotel booking, featuring user authentication, room browsing, booking management, and an admin panel.',
     image: 'https://raw.githubusercontent.com/jR4dh3y/hotel-booking/refs/heads/main/ss/landing.png',
     tags: ['Svelte', 'Node.js', 'Express', 'MySQL'],
     liveUrl: 'https://hotel-booking-amber-nine.vercel.app/',
@@ -26,19 +26,19 @@ const projects = [
     description: 'Dashboard for managing students, events, and points in a developer community, with a ranked leaderboard, student detail pages, and owner/admin-guarded profile updates with points history.',
     image: '/assets/dash.png',
     tags: ['React', 'Node.js', 'Express', 'Firebase'],
-    // liveUrl: '',
+    liveUrl: 'https://dash.radhey.dev/',
     githubUrl: 'https://github.com/jR4dh3y/unidash',
   },
   {
     title: 'Terminal Doom',
-    description: 'This project is a terminal-based first-person shooter inspired by Doom, implemented in C++ and rendered directly within the terminal using the ncurses library',
+    description: 'Terminal-based first-person shooter inspired by Doom, implemented in C++ and rendered directly within the terminal using the ncurses library',
     image: '/assets/doom.png',
     tags: ['C++', 'ncurses','cmake', 'Game Development'],
     githubUrl: 'https://github.com/jR4dh3y/doom-in-terminal',
   },
   {
     title: 'WallpyGui',
-    description: 'GTK4-based wallpaper manager tailored for Wayland environments—specifically designed to work with Niri and Hyprland window managers. It offers a responsive, visually appealing interface for both image and video wallpapers',
+    description: 'Wallpaper manager designed to work with Niri and Hyprland window managers for applying both image and video wallpapers',
     image: '/assets/wall.png',
     tags: ['Linux', 'GTK4', 'Wayland'],
     githubUrl: 'https://github.com/jR4dh3y/wallpygui',

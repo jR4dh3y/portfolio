@@ -1,4 +1,4 @@
-import { Code, Bot, Server, Database, PenTool, GitMerge,type LucideIcon, BrainCircuit, Shell } from 'lucide-react';
+import { Code, Bot, Server, Database, PenTool, GitMerge,type LucideIcon, BrainCircuit, Shell, PcCase, GitBranch, GitGraph, GitGraphIcon, Github, Computer, Cloud } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 interface Skill {
@@ -19,14 +19,14 @@ const skillCategories: SkillCategory[] = [
       { name: 'Python' },
       { name: 'TypeScript/JavaScript' },
       { name: 'C/C++' },
-      { name: 'QML/Shell' },
       { name: 'SQL' },
       { name: 'Bash' },
+      { name: 'QML' },
     ],
   },
   {
     title: 'Frontend & Mobile',
-    icon: Bot,
+    icon: PenTool,
     skills: [
       { name: 'React/Next.js' },
       { name: 'React Native' },
@@ -63,7 +63,7 @@ const skillCategories: SkillCategory[] = [
   },
   {
     title: 'DevOps & Tooling',
-    icon: GitMerge,
+    icon: Github,
     skills: [
       { name: 'Git & GitHub' },
       { name: 'Docker' },
@@ -73,7 +73,7 @@ const skillCategories: SkillCategory[] = [
   },
   {
     title: 'Systems & OS',
-    icon: Shell,
+    icon: Computer,
     skills: [
       { name: 'Linux' },
       { name: 'Bash' },
@@ -83,7 +83,7 @@ const skillCategories: SkillCategory[] = [
   },
   {
     title: 'Cloud & Infrastructure',
-    icon: Server,
+    icon: Cloud,
     skills: [
       { name: 'AWS' },
       { name: 'GCP' },
