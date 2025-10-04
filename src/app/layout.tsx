@@ -3,11 +3,29 @@ import './globals.css';
 import { Toaster } from "@/components/ui/toaster"
 
 export const metadata: Metadata = {
-  title: 'Portfolio',
-  description: 'A personal portfolio showcasing projects and skills.',
-  icons: {
-  icon: '/assets/favicon.png',
+  title: 'Radhey Kalra | Full-Stack Developer & Engineer',
+  description: 'Computer Science student specializing in full-stack development, ML/audio processing, and DevOps. Building innovative projects with React, Node.js, Python, and more.',
+  keywords: ['Radhey Kalra', 'Full-Stack Developer', 'Computer Science', 'Web Development', 'Machine Learning', 'DevOps', 'Portfolio'],
+  authors: [{ name: 'Radhey Kalra' }],
+  creator: 'Radhey Kalra',
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://radheykalra.vercel.app',
+    title: 'Radhey Kalra | Full-Stack Developer',
+    description: 'Computer Science student building innovative full-stack applications and ML solutions.',
+    siteName: 'Radhey Kalra Portfolio',
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Radhey Kalra | Full-Stack Developer',
+    description: 'Computer Science student building innovative full-stack applications.',
+    creator: '@jr4dh3y',
+  },
+  icons: {
+    icon: '/assets/favicon.png',
+  },
+  metadataBase: new URL('https://radheykalra.vercel.app'),
 };
 
 export default function RootLayout({

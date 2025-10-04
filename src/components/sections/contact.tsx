@@ -29,6 +29,7 @@ export default function Contact() {
       name: '',
       email: '',
       message: '',
+      hp: '', // honeypot
     },
   });
 
@@ -70,6 +71,21 @@ export default function Contact() {
         <div className="mt-12 max-w-xl mx-auto">
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+              {/* Honeypot field (hidden from users, traps bots) */}
+              <FormField
+                control={form.control}
+                name="hp"
+                render={({ field }) => (
+                  <input
+                    {...field}
+                    type="text"
+                    className="hidden"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    aria-hidden="true"
+                  />
+                )}
+              />
               <FormField
                 control={form.control}
                 name="name"
