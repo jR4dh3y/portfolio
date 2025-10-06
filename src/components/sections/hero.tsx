@@ -8,7 +8,7 @@ const socialLinks = [
   { icon: Github, href: 'https://github.com/jr4dh3y', label: 'Github' },
   { icon: Linkedin, href: 'https://linkedin.com/in/radheykalra', label: 'LinkedIn' },
   { icon: Twitter, href: 'https://twitter.com/jr4dh3y', label: 'Twitter' },
-  { icon: Download, href: 'https://www.linkedin.com/ambry/?x-li-ambry-ep=AQIFKal93nDs3AAAAZmvCjchOeyXDMt7aLDU6kVByRywcH1IuHQUFgd6bY4Q0gOitNHk77WRrs_OR7BZYjQZz_66Rt_Uf-iUaPPJ4eYJzH4p6uIdbKSntvZJBgHYMURbBCu5II2Yyf5s_SYx3xd5wz-FrOERML7Ba-tahTGB1oYNkbiz8KM6gaUEaijQJr54_1VS_nH7jhBYN9mv7BqVE9TOpPSAX_UOGqxhA7D3NLNfqea8aGFq6UmLWgq6EXDmS35WvUKYVIvrG8PL4kcrz5P9vLB6FnZhYMCkoSj9ppPwcpchBlT9XlKbnS_D24O7Q2IQbLmjC69duphNZOT1_c81hYJZDwRLwr8p2V3YwW629EIf37kNx_msMDytPBgPt3Rssr8W09z3VOIdgJGqZ5Uv_h_nnNJlal1NBKUW4rDoufjXxJwFcB_5p4ptr5WYiKy-dDkKB5-LfIQNUjQ8xm5r2UbOJ0DjFkx74pcQP3HduWIL2CpIxDheV1xV19EhxU7N318MqKiG64fC-fvHBGO-BmveJEwslb6wqUBx-wfbig9elHqa-aDNWinA1wTRA8cTzKk', label: 'Download CV' },
+  { icon: Download, href: 'assets/Radhey_cv.pdf', label: 'Download CV' },
 ];
 
 async function getGithubProfile(username: string) {
