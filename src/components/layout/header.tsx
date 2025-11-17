@@ -7,14 +7,19 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
-const navLinks = [
-  { href: '#projects', label: 'Projects' },
-  { href: '#skills', label: 'Skills' },
-  { href: '#about', label: 'About' },
-  { href: '#contact', label: 'Contact' },
+type SectionKey = 'projects' | 'skills';
+
+const navLinks: { key: SectionKey; label: string }[] = [
+  { key: 'projects', label: 'Projects' },
+  { key: 'skills', label: 'Skills' },
 ];
 
-export default function Header() {
+interface HeaderProps {
+  activeSection: SectionKey;
+  onSectionChange: (section: SectionKey) => void;
+}
+
+export default function Header({ activeSection, onSectionChange }: HeaderProps) {
   const [isSheetOpen, setSheetOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -51,20 +56,33 @@ export default function Header() {
             </motion.span>
           </Link>
           <nav className="hidden gap-6 text-sm md:flex">
-            {navLinks.map(({ href, label }, index) => (
+            {navLinks.map(({ key, label }, index) => (
               <motion.div
                 key={label}
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <Link
-                  href={href}
-                  className="relative transition-colors hover:text-primary group"
+                <button
+                  type="button"
+                  onClick={() => {
+                    onSectionChange(key);
+                    const workSection = document.querySelector('#work');
+                    if (workSection) {
+                      workSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                  }}
+                  className={`relative transition-colors group ${
+                    activeSection === key ? 'text-primary' : 'hover:text-primary'
+                  }`}
                 >
                   {label}
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full" />
-                </Link>
+                  <span
+                    className={`absolute -bottom-1 left-0 h-0.5 bg-primary transition-all duration-300 ${
+                      activeSection === key ? 'w-full' : 'w-0 group-hover:w-full'
+                    }`}
+                  />
+                </button>
               </motion.div>
             ))}
           </nav>
@@ -92,15 +110,24 @@ export default function Header() {
                 <span className="font-bold">Portfolio</span>
               </Link>
               <div className="flex flex-col space-y-3">
-                {navLinks.map(({ href, label }) => (
-                  <Link
+                {navLinks.map(({ key, label }) => (
+                  <button
                     key={label}
-                    href={href}
-                    onClick={closeSheet}
-                    className="transition-colors hover:text-primary"
+                    type="button"
+                    onClick={() => {
+                      onSectionChange(key);
+                      const workSection = document.querySelector('#work');
+                      if (workSection) {
+                        workSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                      }
+                      closeSheet();
+                    }}
+                    className={`text-left transition-colors ${
+                      activeSection === key ? 'text-primary' : 'hover:text-primary'
+                    }`}
                   >
                     {label}
-                  </Link>
+                  </button>
                 ))}
               </div>
             </SheetContent>

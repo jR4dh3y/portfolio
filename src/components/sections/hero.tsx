@@ -6,7 +6,7 @@ import Link from 'next/link';
 import ParticleSystem from '@/components/common/particle-system';
 import SocialButtons from '@/components/ui/dinamic-buttons';
 import { motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
+import { forwardRef, useEffect, useState } from 'react';
 import { fadeInUp, scaleIn, staggerContainer } from '@/lib/motion-variants';
 
 const socialLinks = [
@@ -99,9 +99,7 @@ function HeroContent({ profilePictureUrl }: { profilePictureUrl: string }) {
     </div>
   );
 }
-
-
-export default function Hero() {
+const Hero = forwardRef<HTMLElement, React.HTMLAttributes<HTMLElement>>(function Hero(props, ref) {
   const defaultUsername = 'jr4dh3y';
   const defaultAvatar = `https://avatars.githubusercontent.com/${defaultUsername}`;
   const [profilePictureUrl, setProfilePictureUrl] = useState(defaultAvatar);
@@ -133,7 +131,12 @@ export default function Hero() {
   }, []);
 
   return (
-    <section id="home" className="relative h-[calc(100vh-3.5rem)] min-h-[600px] overflow-hidden bg-gradient-to-br from-background via-background/95 to-background/90">
+    <section
+      id="home"
+      ref={ref}
+      className="relative h-[calc(100vh-3.5rem)] min-h-[600px] overflow-hidden bg-gradient-to-br from-background via-background/95 to-background/90"
+      {...props}
+    >
       {/* Radial gradient overlay for depth */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(0,0,0,0.3)_100%)] pointer-events-none z-0" />
 
@@ -143,4 +146,6 @@ export default function Hero() {
       <HeroContent profilePictureUrl={profilePictureUrl} />
     </section>
   );
-}
+});
+
+export default Hero;
