@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+
 
 const navLinks = [
   { href: '#home', label: 'Home' },
@@ -15,36 +15,26 @@ const navLinks = [
   { href: '#contact', label: 'Contact' },
 ];
 
-const ENABLE_SCROLL_NAV = true; 
-
 export default function Header() {
   const [isSheetOpen, setSheetOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [isVisible, setIsVisible] = useState(!ENABLE_SCROLL_NAV);
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollY = window.scrollY;
-      setScrolled(scrollY > 10);
-
-      if (ENABLE_SCROLL_NAV) {
-        const threshold = window.innerHeight / 1;
-        setIsVisible(scrollY > threshold);
-      }
+      const currentScrollY = window.scrollY;
+      setScrolled(currentScrollY > 10);
     };
+    
     handleScroll();
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const closeSheet = () => setSheetOpen(false);
 
   return (
-    <motion.header
-      initial={ENABLE_SCROLL_NAV ? { y: -100 } : { y: 0 }}
-      animate={{ y: isVisible ? 0 : -100 }}
-      transition={{ duration: 0.5, ease: 'easeOut' }}
+    <header
       className={`fixed top-0 z-50 w-full border-b border-border/40 backdrop-blur supports-[backdrop-filter]:bg-background/60 transition-all duration-300 ${scrolled ? 'bg-background/95 shadow-lg' : 'bg-background/80'
         }`}
     >
@@ -101,6 +91,6 @@ export default function Header() {
           </Sheet>
         </div>
       </div>
-    </motion.header>
+    </header>
   );
 }
