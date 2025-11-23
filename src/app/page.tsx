@@ -41,8 +41,8 @@ export default function Home() {
       {showHeader && <Header />}
       <main className="flex-1">
         <Hero ref={heroRef} />
-        <WorkSection />
         <Experience />
+        <WorkSection />
         <About />
         <Contact />
       </main>

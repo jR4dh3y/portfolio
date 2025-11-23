@@ -65,7 +65,18 @@ const skillCategories: SkillCategory[] = [
     ],
   },
   {
-    title: 'DevOps & Cloud Infrastructure',
+    title: 'Systems & OS',
+    icon: Computer,
+    skills: [
+      { name: 'Linux' },
+      { name: 'Windows' },
+      { name: 'Bash' },
+      { name: 'systemd' },
+      { name: 'Networking' },
+    ],
+  },
+  {
+    title: 'DevOps & Cloud',
     icon: Cloud,
     skills: [
       { name: 'Git' },
@@ -76,17 +87,6 @@ const skillCategories: SkillCategory[] = [
       { name: 'GCP' },
       { name: 'Kubernetes' },
       { name: 'Terraform' },
-    ],
-  },
-  {
-    title: 'Systems & OS',
-    icon: Computer,
-    skills: [
-      { name: 'Linux' },
-      { name: 'Windows' },
-      { name: 'Bash' },
-      { name: 'systemd' },
-      { name: 'Networking' },
     ],
   },
 ];
@@ -125,26 +125,18 @@ export default function Skills() {
           >
             <Card className="hover:border-primary transition-colors h-full">
               <CardHeader className="flex flex-row items-center gap-4">
-                <motion.div
-                  initial={{ rotate: 0 }}
-                  whileHover={{ rotate: 360 }}
-                  transition={{ duration: 0.6 }}
-                >
-                  <category.icon className="h-8 w-8 text-primary" />
-                </motion.div>
+                <category.icon className="h-8 w-8 text-primary" />
                 <CardTitle className="font-headline text-2xl">{category.title}</CardTitle>
               </CardHeader>
               <CardContent>
                 <ul className="flex flex-wrap gap-2">
-                  {category.skills.map((skill, skillIndex) => (
-                    <motion.li
+                  {category.skills.map((skill) => (
+                    <li
                       key={skill.name}
-                      variants={scaleIn}
-                      whileHover={{ scale: 1.05, cursor: "none" }}
-                      className="rounded-md bg-secondary px-3 py-1 text-sm font-medium text-secondary-foreground cursor-default"
+                      className="rounded-md bg-secondary px-3 py-1 text-sm font-medium text-secondary-foreground"
                     >
                       {skill.name}
-                    </motion.li>
+                    </li>
                   ))}
                 </ul>
               </CardContent>

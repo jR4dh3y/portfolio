@@ -8,7 +8,7 @@ import { fadeInLeft, fadeInRight, staggerContainer } from '@/lib/motion-variants
 
 export default function About() {
   return (
-    <section id="about" className="relative py-20 sm:py-32 overflow-hidden">
+    <section id="about" className="relative py-20 sm:py-32 overflow-hidden bg-muted/40">
       {/* <div className="absolute inset-0 -z-10 opacity-40">
         <BinaryBackground />
       </div> */}

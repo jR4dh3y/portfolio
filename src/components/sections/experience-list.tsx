@@ -1,6 +1,7 @@
 'use client';
 
 import { Badge } from '@/components/ui/badge';
+import { ExternalLink } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { fadeInUp, staggerContainer } from '@/lib/motion-variants';
 import {
@@ -19,9 +20,14 @@ const experiences = [
     {
         company: 'GDGoC (Google Developer Groups on Campus) MIET Jammu',
         role: 'Cloud Lead',
-        period: 'July 2025 - Present',
-        description: '',
-        skills: ['GCP', 'TypeScript', 'Linux', 'Docker']
+        period: 'Aug 2025 - Present',
+        description: `Led cloud learning initiatives by organizing hands-on workshops focused on Google Cloud technologies.
+Built and maintained a tutorial website hosting video walkthroughs of Google Cloud Study Jam labs along with detailed notes to help students complete skill badges.`,
+        skills: ['GCP', 'TypeScript', 'Linux', 'Docker', 'Terraform'],
+        links: [
+            { label: 'Tutorial Website', href: 'https://gcp-tutorial.vercel.app' },
+            { label: 'Github Repository', href: 'https://github.com/gdgoc-miet/gcp-tutorial-ui' }
+        ]
     }
 ];
 
@@ -49,9 +55,25 @@ export default function ExperienceList() {
                                 </div>
                             </TimelineHeader>
                             <TimelineContent>
-                                <TimelineDescription className="mb-4 text-base leading-relaxed">
+                                <TimelineDescription className="mb-4 text-base leading-relaxed whitespace-pre-line">
                                     {exp.description}
                                 </TimelineDescription>
+                                {exp.links && exp.links.length > 0 && (
+                                    <div className="flex flex-wrap gap-4 mb-4">
+                                        {exp.links.map((link, i) => (
+                                            <a
+                                                key={i}
+                                                href={link.href}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+                                            >
+                                                {link.label}
+                                                <ExternalLink className="w-3.5 h-3.5" />
+                                            </a>
+                                        ))}
+                                    </div>
+                                )}
                                 <div className="flex flex-wrap gap-2">
                                     {exp.skills.map(skill => (
                                         <Badge key={skill} variant="secondary" className="text-xs font-normal">
