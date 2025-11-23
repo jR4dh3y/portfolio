@@ -25,7 +25,6 @@ const skillCategories: SkillCategory[] = [
       { name: 'C/C++' },
       { name: 'SQL' },
       { name: 'Bash' },
-      { name: 'QML' },
     ],
   },
   {
@@ -35,17 +34,17 @@ const skillCategories: SkillCategory[] = [
       { name: 'React/Next.js' },
       { name: 'React Native' },
       { name: 'Expo' },
-      { name: 'Svelte' },
+      { name: 'Svelte' },      
       { name: 'Tailwind CSS' },
+      { name: 'QML' },
     ],
   },
   {
     title: 'AI/ML',
     icon: BrainCircuit,
     skills: [
-      { name: 'Diffusion' },
-      { name: 'U-Net' },
       { name: 'PyTorch' },
+      { name: 'TensorFlow' },
       { name: 'Transformers' },
       { name: 'scikit-learn' },
       { name: 'NumPy' },
@@ -66,13 +65,17 @@ const skillCategories: SkillCategory[] = [
     ],
   },
   {
-    title: 'DevOps & Tooling',
-    icon: Github,
+    title: 'DevOps & Cloud Infrastructure',
+    icon: Cloud,
     skills: [
-      { name: 'Git & GitHub' },
+      { name: 'Git' },
       { name: 'Docker' },
       { name: 'CI/CD' },
       { name: 'Vercel' },
+      { name: 'AWS' },
+      { name: 'GCP' },
+      { name: 'Kubernetes' },
+      { name: 'Terraform' },
     ],
   },
   {
@@ -80,18 +83,10 @@ const skillCategories: SkillCategory[] = [
     icon: Computer,
     skills: [
       { name: 'Linux' },
+      { name: 'Windows' },
       { name: 'Bash' },
       { name: 'systemd' },
       { name: 'Networking' },
-    ],
-  },
-  {
-    title: 'Cloud & Infrastructure',
-    icon: Cloud,
-    skills: [
-      { name: 'AWS' },
-      { name: 'GCP' },
-      { name: 'Kubernetes' },
     ],
   },
 ];
@@ -123,6 +118,7 @@ export default function Skills() {
             variants={fadeInUp}
             whileHover={{
               y: -5,
+              cursor: "none",
               boxShadow: "0 10px 30px -10px rgba(167, 139, 250, 0.3)",
               transition: { duration: 0.3 }
             }}
@@ -144,7 +140,7 @@ export default function Skills() {
                     <motion.li
                       key={skill.name}
                       variants={scaleIn}
-                      whileHover={{ scale: 1.05 }}
+                      whileHover={{ scale: 1.05, cursor: "none" }}
                       className="rounded-md bg-secondary px-3 py-1 text-sm font-medium text-secondary-foreground cursor-default"
                     >
                       {skill.name}
