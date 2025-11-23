@@ -13,7 +13,7 @@ const projects = [
     title: 'UNet Audio Filter',
     description: 'U-Net based speech enhancement and noise reduction pipeline for audio with a CLI and Streamlit app.',
     image: 'https://raw.githubusercontent.com/jR4dh3y/unet-audiofilter/refs/heads/master/presentation/audio_comparison.png',
-    tags: ['Python','U-Net', 'PyTorch', 'Streamlit', 'Audio DSP'],
+    tags: ['Python', 'U-Net', 'PyTorch', 'Streamlit', 'Audio DSP'],
     liveUrl: 'https://aiclearvoice.streamlit.app/',
     githubUrl: 'https://github.com/jR4dh3y/unet-audiofilter',
   },
@@ -37,7 +37,7 @@ const projects = [
     title: 'Terminal Doom',
     description: 'Terminal-based first-person shooter inspired by Doom, implemented in C++ and rendered directly within the terminal using the ncurses library',
     image: '/assets/doom.png',
-    tags: ['C++', 'ncurses','cmake', 'Game Development'],
+    tags: ['C++', 'ncurses', 'cmake', 'Game Development'],
     githubUrl: 'https://github.com/jR4dh3y/doom-in-terminal',
   },
   {
@@ -51,75 +51,62 @@ const projects = [
 
 export default function Projects() {
   return (
-    <section id="projects" className="py-20 sm:py-32">
-      <div className="container">
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={fadeInUp}
-          className="text-center"
-        >
-          <h2 className="font-headline text-4xl font-extrabold tracking-tight sm:text-5xl">My Projects</h2>
-          <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
-            Here are some of the projects I've worked on.
-          </p>
-        </motion.div>
-
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={staggerContainer}
-          className="mt-16 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-2"
-        >
-          {projects.map((project, index) => (
-            <motion.div
-              key={project.title}
-              variants={fadeInUp}
-              whileHover={{
-                y: -8,
-                transition: { duration: 0.3 }
-              }}
-            >
-              <Card className="flex flex-col h-full overflow-hidden group">
-                <CardHeader className="p-0">
-                  <motion.div
-                    className="relative h-48 w-full overflow-hidden"
-                    transition={{ duration: 0.3 }}
-                  >
-                    <Image
-                      src={project.image}
-                      alt={project.title}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
-                  </motion.div>
-                </CardHeader>
-                <CardContent className="flex-1 p-6">
-                  <CardTitle className="font-headline text-xl">{project.title}</CardTitle>
-                  <CardDescription className="mb-4">{project.description}</CardDescription>
-                  <div className="flex flex-wrap gap-2">
-                    {project.tags.map((tag) => (
-                      <Badge key={tag} variant="secondary">{tag}</Badge>
-                    ))}
-                  </div>
-                </CardContent>
-                <CardFooter className="p-6 pt-0">
-                  {project.liveUrl && project.liveUrl.trim() !== '' && project.liveUrl !== '#' && (
-                    <Button asChild className="mr-2 bg-accent text-accent-foreground hover:bg-accent/90">
-                      <Link href={project.liveUrl}>Live Demo</Link>
-                    </Button>
+    <div className="w-full">
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        variants={staggerContainer}
+        className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
+      >
+        {projects.map((project, index) => (
+          <motion.div
+            key={project.title}
+            variants={fadeInUp}
+            whileHover={{
+              y: -5,
+              transition: { duration: 0.2 }
+            }}
+          >
+            <Card className="flex flex-col h-full overflow-hidden group hover:shadow-lg transition-shadow duration-300 border-muted/50">
+              <CardHeader className="p-0">
+                <motion.div
+                  className="relative h-40 w-full overflow-hidden"
+                  transition={{ duration: 0.3 }}
+                >
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                </motion.div>
+              </CardHeader>
+              <CardContent className="flex-1 p-4">
+                <CardTitle className="font-headline text-lg mb-2">{project.title}</CardTitle>
+                <CardDescription className="mb-3 text-sm line-clamp-3">{project.description}</CardDescription>
+                <div className="flex flex-wrap gap-1.5">
+                  {project.tags.slice(0, 4).map((tag) => (
+                    <Badge key={tag} variant="secondary" className="text-xs px-2 py-0.5">{tag}</Badge>
+                  ))}
+                  {project.tags.length > 4 && (
+                    <Badge variant="secondary" className="text-xs px-2 py-0.5">+{project.tags.length - 4}</Badge>
                   )}
-                  <Button variant="outline" asChild>
-                    <Link href={project.githubUrl}>GitHub</Link>
+                </div>
+              </CardContent>
+              <CardFooter className="p-4 pt-0 flex gap-2">
+                {project.liveUrl && project.liveUrl.trim() !== '' && project.liveUrl !== '#' && (
+                  <Button asChild size="sm" className="flex-1 bg-accent text-accent-foreground hover:bg-accent/90 h-8 text-xs">
+                    <Link href={project.liveUrl}>Live Demo</Link>
                   </Button>
-                </CardFooter>
-              </Card>
-            </motion.div>
-          ))}
-        </motion.div>
-      </div>
-    </section>
+                )}
+                <Button variant="outline" size="sm" asChild className="flex-1 h-8 text-xs">
+                  <Link href={project.githubUrl}>GitHub</Link>
+                </Button>
+              </CardFooter>
+            </Card>
+          </motion.div>
+        ))}
+      </motion.div>
+    </div>
   );
 }

@@ -2,12 +2,17 @@
 
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+
+import BinaryBackground from '@/components/common/binary-background';
 import { fadeInLeft, fadeInRight, staggerContainer } from '@/lib/motion-variants';
 
 export default function About() {
   return (
-    <section id="about" className="py-20 sm:py-32">
-      <div className="container">
+    <section id="about" className="relative py-20 sm:py-32 overflow-hidden">
+      {/* <div className="absolute inset-0 -z-10 opacity-40">
+        <BinaryBackground />
+      </div> */}
+      <div className="container relative">
         <motion.div
           initial="hidden"
           whileInView="visible"

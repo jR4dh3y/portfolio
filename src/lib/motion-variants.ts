@@ -1,46 +1,51 @@
 import { Variants } from 'framer-motion';
 
 // Common Framer Motion variants used across the application
+// Common Framer Motion variants used across the application
 export const fadeInUp: Variants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 10 },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.6,
+      duration: 0.4,
+      ease: "easeOut"
     }
   }
 };
 
 export const fadeInLeft: Variants = {
-  hidden: { opacity: 0, x: -50 },
+  hidden: { opacity: 0, x: -20 },
   visible: {
     opacity: 1,
     x: 0,
     transition: {
-      duration: 0.6,
+      duration: 0.4,
+      ease: "easeOut"
     }
   }
 };
 
 export const fadeInRight: Variants = {
-  hidden: { opacity: 0, x: 50 },
+  hidden: { opacity: 0, x: 20 },
   visible: {
     opacity: 1,
     x: 0,
     transition: {
-      duration: 0.6,
+      duration: 0.4,
+      ease: "easeOut"
     }
   }
 };
 
 export const scaleIn: Variants = {
-  hidden: { opacity: 0, scale: 0.8 },
+  hidden: { opacity: 0, scale: 0.95 },
   visible: {
     opacity: 1,
     scale: 1,
     transition: {
-      duration: 0.5,
+      duration: 0.3,
+      ease: "easeOut"
     }
   }
 };
@@ -50,8 +55,8 @@ export const staggerContainer: Variants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.2
+      staggerChildren: 0.05,
+      delayChildren: 0.1
     }
   }
 };

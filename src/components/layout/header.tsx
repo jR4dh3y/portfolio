@@ -5,11 +5,12 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+
 
 const navLinks = [
-  { href: '#projects', label: 'Projects' },
-  { href: '#skills', label: 'Skills' },
+  { href: '#home', label: 'Home' },
+  { href: '#work', label: 'Work' },
+  { href: '#experience', label: 'Experience' },
   { href: '#about', label: 'About' },
   { href: '#contact', label: 'Contact' },
 ];
@@ -20,65 +21,48 @@ export default function Header() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      const currentScrollY = window.scrollY;
+      setScrolled(currentScrollY > 10);
     };
+    
+    handleScroll();
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const closeSheet = () => setSheetOpen(false);
 
   return (
-    <motion.header
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5, ease: 'easeOut' }}
-      className={`sticky top-0 z-50 w-full border-b border-border/40 backdrop-blur supports-[backdrop-filter]:bg-background/60 transition-all duration-300 ${
-        scrolled ? 'bg-background/95 shadow-lg' : 'bg-background/80'
-      }`}
+    <header
+      className={`fixed top-0 z-50 w-full border-b border-border/40 backdrop-blur supports-[backdrop-filter]:bg-background/60 transition-all duration-300 ${scrolled ? 'bg-background/95 shadow-lg' : 'bg-background/80'
+        }`}
     >
       <div className="container flex h-14 items-center">
         <div className="mr-4 flex items-center">
           <Link href="/" className="mr-6 flex items-center space-x-2">
             <TerminalSquare className="h-6 w-6 text-primary" onClick={() => window.open('https://calm.radhey.dev', '_blank')} />
-            <motion.span
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.2 }}
-              className="font-bold"
-            >
+            <span className="font-bold">
               Portfolio
-            </motion.span>
+            </span>
           </Link>
           <nav className="hidden gap-6 text-sm md:flex">
-            {navLinks.map(({ href, label }, index) => (
-              <motion.div
+            {navLinks.map(({ href, label }) => (
+              <Link
                 key={label}
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                href={href}
+                className="transition-colors hover:text-primary"
               >
-                <Link
-                  href={href}
-                  className="relative transition-colors hover:text-primary group"
-                >
-                  {label}
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full" />
-                </Link>
-              </motion.div>
+                {label}
+              </Link>
             ))}
           </nav>
         </div>
         <div className="flex flex-1 items-center justify-end space-x-4">
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.5 }}
-            className="hidden items-center gap-2 text-sm text-muted-foreground sm:flex"
-          >
+          <div className="hidden items-center gap-2 text-sm text-muted-foreground sm:flex">
             <MapPin className="h-4 w-4" />
             <span>Jammu, India</span>
-          </motion.div>
+          </div>
           <Sheet open={isSheetOpen} onOpenChange={setSheetOpen}>
             <SheetTrigger asChild>
               <Button variant="ghost" className="md:hidden">
@@ -97,7 +81,7 @@ export default function Header() {
                     key={label}
                     href={href}
                     onClick={closeSheet}
-                    className="transition-colors hover:text-primary"
+                    className="text-left transition-colors hover:text-primary"
                   >
                     {label}
                   </Link>
@@ -107,6 +91,6 @@ export default function Header() {
           </Sheet>
         </div>
       </div>
-    </motion.header>
+    </header>
   );
 }

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binary Matrix Background</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #1e1e20;
+            overflow: hidden;
+            font-family: 'Courier New', monospace;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        #binary-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            line-height: 1.5;
+            padding: 10px;
+            white-space: pre;
+            letter-spacing: 8px;
+        }
+
+        .binary-digit {
+            color: #c59edc;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            user-select: none;
+            display: inline-block;
+            position: relative;
+            transition: color 0.3s ease-out, text-shadow 1.5s ease-out, transform 0.5s ease-out;
+        }
+
+        .binary-digit:hover {
+            color: #c3fb5b;
+            text-shadow: 0 0 15px #c3fb5b, 0 0 25px #c3fb5b;
+            transform: scale(1.5);
+            z-index: 10;
+        }
+
+        .binary-digit.highlighted {
+            color: #c3fb5b;
+            text-shadow: 0 0 15px #c3fb5b, 0 0 25px #c3fb5b;
+        }
+
+        .binary-digit.flipping {
+            animation: flip 0.15s ease;
+        }
+
+        @keyframes flip {
+            0% {
+                transform: rotateX(0deg);
+            }
+
+            50% {
+                transform: rotateX(90deg);
+            }
+
+            100% {
+                transform: rotateX(0deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="binary-container"></div>
+
+    <script>
+        const container = document.getElementById('binary-container');
+
+        function generateBinaryBackground() {
+            const cols = Math.floor(window.innerWidth / 15);
+            const rows = Math.floor(window.innerHeight / 24);
+
+            let html = '';
+            for (let row = 0; row < rows; row++) {
+                for (let col = 0; col < cols; col++) {
+                    const value = Math.random() > 0.5 ? '1' : '0';
+                    html += `<span class="binary-digit" data-value="${value}">${value}</span>`;
+                }
+                html += '\n';
+            }
+
+            container.innerHTML = html;
+
+            // Add event listeners
+            document.querySelectorAll('.binary-digit').forEach(digit => {
+                digit.addEventListener('mouseenter', function () {
+                    if (!this.classList.contains('flipping')) {
+                        this.classList.add('flipping');
+                        this.classList.add('highlighted');
+
+                        // Flip the value instantly
+                        const currentValue = this.getAttribute('data-value');
+                        const newValue = currentValue === '0' ? '1' : '0';
+                        this.setAttribute('data-value', newValue);
+                        this.textContent = newValue;
+
+                        // Remove animation class
+                        setTimeout(() => {
+                            this.classList.remove('flipping');
+                        }, 200);
+
+                        // Remove highlight with decay
+                        setTimeout(() => {
+                            this.classList.remove('highlighted');
+                        }, 500);
+                    }
+                });
+            });
+        }
+
+        // Initialize
+        generateBinaryBackground();
+
+        // Regenerate on window resize
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(generateBinaryBackground, 250);
+        });
+    </script>
+</body>
+
+</html>

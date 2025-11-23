@@ -6,7 +6,7 @@ import Link from 'next/link';
 import ParticleSystem from '@/components/common/particle-system';
 import SocialButtons from '@/components/ui/dinamic-buttons';
 import { motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
+import { forwardRef, useEffect, useState } from 'react';
 import { fadeInUp, scaleIn, staggerContainer } from '@/lib/motion-variants';
 
 const socialLinks = [
@@ -31,7 +31,6 @@ function HeroContent({ profilePictureUrl }: { profilePictureUrl: string }) {
         variants={staggerContainer}
         className="flex items-center justify-center w-full max-w-4xl"
       >
-        {/* Profile info - Centered */}
         <motion.div
           variants={fadeInUp}
           className="flex flex-col items-center gap-8 text-center lg:flex-row lg:text-left rounded-2xl p-8 bg-background/50 backdrop-blur-2xl backdrop-saturate-200 border border-white/30 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)] ring-1 ring-white/20"
@@ -50,7 +49,7 @@ function HeroContent({ profilePictureUrl }: { profilePictureUrl: string }) {
               data-ai-hint="professional portrait"
             />
           </motion.div>
-          
+
           <div className="max-w-xl">
             <motion.p
               variants={fadeInUp}
@@ -92,16 +91,14 @@ function HeroContent({ profilePictureUrl }: { profilePictureUrl: string }) {
         }}
         className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10"
       >
-        <Link href="#projects" aria-label="Scroll to projects">
+        <Link href="#work" aria-label="Scroll to projects">
           <ArrowDown className="h-8 w-8 text-primary" />
         </Link>
       </motion.div>
     </div>
   );
 }
-
-
-export default function Hero() {
+const Hero = forwardRef<HTMLElement, React.HTMLAttributes<HTMLElement>>(function Hero(props, ref) {
   const defaultUsername = 'jr4dh3y';
   const defaultAvatar = `https://avatars.githubusercontent.com/${defaultUsername}`;
   const [profilePictureUrl, setProfilePictureUrl] = useState(defaultAvatar);
@@ -128,19 +125,26 @@ export default function Hero() {
         setProfilePictureUrl(fallbackAvatar);
       }
     };
-    
+
     fetchProfile();
   }, []);
 
   return (
-    <section id="home" className="relative h-[calc(100vh-3.5rem)] min-h-[600px] overflow-hidden bg-gradient-to-br from-background via-background/95 to-background/90">
+    <section
+      id="home"
+      ref={ref}
+      className="relative h-screen min-h-[600px] overflow-hidden bg-gradient-to-br from-background via-background/95 to-background/90"
+      {...props}
+    >
       {/* Radial gradient overlay for depth */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(0,0,0,0.3)_100%)] pointer-events-none z-0" />
 
       {/* Particle System */}
       <ParticleSystem />
-      
+
       <HeroContent profilePictureUrl={profilePictureUrl} />
     </section>
   );
-}
+});
+
+export default Hero;
