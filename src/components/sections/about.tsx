@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 
@@ -7,8 +8,10 @@ import BinaryBackground from '@/components/common/binary-background';
 import { fadeInLeft, fadeInRight, staggerContainer } from '@/lib/motion-variants';
 
 export default function About() {
+  const [isInteracting, setIsInteracting] = useState(false);
+
   return (
-    <section id="about" className="relative py-20 sm:py-32 overflow-hidden">
+    <section id="about" className="relative py-20 sm:py-32 bg-muted/40">
       {/* <div className="absolute inset-0 -z-10 opacity-40">
         <BinaryBackground />
       </div> */}
@@ -42,16 +45,52 @@ export default function About() {
             className="order-1 lg:order-2 flex justify-center"
           >
             <motion.div
-              whileHover={{ scale: 1.05, rotate: 2 }}
-              transition={{ duration: 0.3 }}
+              initial="idle"
+              whileHover="hover"
+              onHoverEnd={() => setIsInteracting(false)}
               className="relative h-96 w-80"
             >
-              <Image
-                src="/assets/about.jpg"
-                alt=""
-                fill
-                className="rounded-lg object-cover shadow-lg"
-              />
+              <motion.div
+                variants={{
+                  idle: { x: 0, opacity: 0 },
+                  hover: { x: '110%', opacity: 1 }
+                }}
+                transition={{ duration: 0.3 }}
+                className="absolute inset-0 z-0 flex items-center justify-center rounded-lg bg-background shadow-xl"
+              >
+                <iframe
+                  style={{ borderRadius: '12px' }}
+                  src="https://open.spotify.com/embed/playlist/0pozKGQbQGPbpBwMMNjA8U?utm_source=generator&theme=0"
+                  width="100%"
+                  height="100%"
+                  frameBorder="0"
+                  allowFullScreen
+                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                  loading="lazy"
+                  className="h-full w-full"
+                ></iframe>
+                {!isInteracting && (
+                  <div
+                    className="absolute inset-0 z-10 cursor-pointer"
+                    onClick={() => setIsInteracting(true)}
+                  />
+                )}
+              </motion.div>
+              <motion.div
+                variants={{
+                  idle: { scale: 1 },
+                  hover: { scale: 1.05 }
+                }}
+                transition={{ duration: 0.3 }}
+                className="relative h-full w-full"
+              >
+                <Image
+                  src="/assets/about.jpg"
+                  alt=""
+                  fill
+                  className="rounded-lg object-cover shadow-lg z-10"
+                />
+              </motion.div>
             </motion.div>
           </motion.div>
         </motion.div>

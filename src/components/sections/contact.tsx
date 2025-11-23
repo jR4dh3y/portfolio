@@ -61,7 +61,7 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="bg-muted/40 py-20 sm:py-32">
+    <section id="contact" className="py-20 sm:py-32">
       <div className="container">
         <motion.div
           initial="hidden"
