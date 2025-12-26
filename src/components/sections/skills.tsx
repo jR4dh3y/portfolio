@@ -24,7 +24,7 @@ const skillCategories: SkillCategory[] = [
       { name: 'TypeScript/JavaScript' },
       { name: 'C/C++' },
       { name: 'SQL' },
-      { name: 'Bash' },
+      { name: 'Lua' }
     ],
   },
   {
@@ -32,9 +32,9 @@ const skillCategories: SkillCategory[] = [
     icon: PenTool,
     skills: [
       { name: 'React/Next.js' },
+      { name: 'Svelte' },      
       { name: 'React Native' },
       { name: 'Expo' },
-      { name: 'Svelte' },      
       { name: 'Tailwind CSS' },
       { name: 'QML' },
     ],
@@ -61,6 +61,7 @@ const skillCategories: SkillCategory[] = [
       { name: 'GraphQL' },
       { name: 'WebSockets' },
       { name: 'PostgreSQL' },
+      { name: 'ConvexDB' },
       { name: 'MySQL' },
     ],
   },
@@ -70,8 +71,9 @@ const skillCategories: SkillCategory[] = [
     skills: [
       { name: 'Linux' },
       { name: 'Windows' },
-      { name: 'Bash' },
       { name: 'systemd' },
+      { name: 'PowerShell' },
+      { name: 'Bash' },
       { name: 'Networking' },
     ],
   },
@@ -94,18 +96,6 @@ const skillCategories: SkillCategory[] = [
 export default function Skills() {
   return (
     <div className="w-full">
-      <motion.div
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        variants={fadeInUp}
-        className="text-center mb-16"
-      >
-        <p className="max-w-2xl mx-auto text-lg text-muted-foreground">
-          A look at the technologies, languages, and tools I work with.
-        </p>
-      </motion.div>
-
       <motion.div
         initial="hidden"
         animate="visible"
@@ -133,7 +123,7 @@ export default function Skills() {
                   {category.skills.map((skill) => (
                     <li
                       key={skill.name}
-                      className="rounded-md bg-secondary px-3 py-1 text-sm font-medium text-secondary-foreground"
+                      className="rounded-full bg-secondary px-3 py-1 text-sm font-medium text-secondary-foreground"
                     >
                       {skill.name}
                     </li>
