@@ -34,10 +34,10 @@ export default function About() {
               I'm a Computer Science Engineering student who loves messing around with tech, open source, and building cool stuff. I'm always curious about how things work and end up learning best by experimenting and trying new projects.
             </motion.p>
             <motion.p variants={fadeInLeft} className="mt-4 text-lg text-muted-foreground">
-              I'm efficient at leading groups and getting work done, with experience gained through bootcamps, hackathons, and team projects. These opportunities have helped me improve my communication and leadership skills, manage responsibilities under pressure, and deliver results effectively.
+              I'm efficient at leading groups, with experience gained through bootcamps, hackathons, and team projects. These opportunities have helped me improve my communication and leadership skills, manage responsibilities under pressure, and deliver results.
             </motion.p>
             <motion.p variants={fadeInLeft} className="mt-4 text-lg text-muted-foreground">
-              When I'm not coding, you'll usually find me listening to or creating music. I love breaking it down and sometimes make my own. I also enjoy exploring new tools, research, and open source projects, because for me, tech is all about sharing, learning, and building things that others can use too.
+              When I'm not coding, you'll usually find me listening to or creating music. I love breaking it down and sometimes make my own. I also enjoy exploring new tools, research, and open source projects.
             </motion.p>
           </motion.div>
           <motion.div
@@ -60,7 +60,7 @@ export default function About() {
               >
                 <iframe
                   style={{ borderRadius: '12px' }}
-                  src="https://open.spotify.com/embed/playlist/0pozKGQbQGPbpBwMMNjA8U?utm_source=generator&theme=0"
+                  src="https://open.spotify.com/embed/playlist/7d8zl8UGKsGmGLzzOm7t1r?utm_source=generator&theme=0"
                   width="100%"
                   height="100%"
                   frameBorder="0"

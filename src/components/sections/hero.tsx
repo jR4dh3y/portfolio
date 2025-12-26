@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { Github, Linkedin, Twitter, ArrowDown, Download } from 'lucide-react';
+import { Github, Linkedin, Twitter, ArrowDown, Download, Mail } from 'lucide-react';
 import Link from 'next/link';
 import ParticleSystem from '@/components/common/particle-system';
 import SocialButtons from '@/components/ui/dinamic-buttons';
@@ -12,7 +12,8 @@ import { fadeInUp, scaleIn, staggerContainer } from '@/lib/motion-variants';
 const socialLinks = [
   { icon: Github, href: 'https://github.com/jr4dh3y', label: 'Github' },
   { icon: Linkedin, href: 'https://linkedin.com/in/radheykalra', label: 'LinkedIn' },
-  { icon: Twitter, href: 'https://twitter.com/jr4dh3y', label: 'Twitter' },
+  // { icon: Twitter, href: 'https://twitter.com/jr4dh3y', label: 'Twitter' },
+  { icon: Mail, href: 'mailto:radheykalra901@gmail.com', label: 'Email' },
   { icon: Download, href: 'assets/Radhey_cv.pdf', label: 'Download CV' },
 ];
 
@@ -67,7 +68,7 @@ function HeroContent({ profilePictureUrl }: { profilePictureUrl: string }) {
               variants={fadeInUp}
               className="mb-6 text-lg text-foreground/80"
             >
-              I build full-stack apps, mobile solutions, and work on ML/audio processing. I&apos;m fluent in DevOps and love ricing my setup.
+              I am a CSE student from India who works on ML/audio processing and builds web applications.
             </motion.p>
             <motion.div
               variants={fadeInUp}
