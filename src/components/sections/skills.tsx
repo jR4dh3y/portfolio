@@ -32,7 +32,7 @@ const skillCategories: SkillCategory[] = [
     icon: PenTool,
     skills: [
       { name: 'React/Next.js' },
-      { name: 'Svelte' },      
+      { name: 'Svelte' },
       { name: 'React Native' },
       { name: 'Expo' },
       { name: 'Tailwind CSS' },
@@ -56,10 +56,8 @@ const skillCategories: SkillCategory[] = [
     icon: Server,
     skills: [
       { name: 'Node.js' },
-      { name: 'Express' },
       { name: 'REST' },
       { name: 'GraphQL' },
-      { name: 'WebSockets' },
       { name: 'PostgreSQL' },
       { name: 'ConvexDB' },
       { name: 'MySQL' },

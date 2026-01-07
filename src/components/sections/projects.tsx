@@ -8,6 +8,8 @@ import { useState } from 'react';
 import { ArrowUpRight, GithubIcon } from 'lucide-react';
 import { title } from 'process';
 import { imageConfigDefault } from 'next/dist/shared/lib/image-config';
+import { fadeInUp, staggerContainer } from '@/lib/motion-variants';
+import { url } from 'inspector';
 
 const projects = [
   {
@@ -50,53 +52,57 @@ const projects = [
     title: 'CS2 Skin Market Tracker',
     desc: 'CS2 skin market tracker with 7d price history charts and live price updates.',
     image: '/assets/cs2.png',
-    tags: ['React','Shadcn','Next.js', 'Vercel-Blob', 'Steam-API'],
+    tags: ['React', 'Shadcn', 'Next.js', 'Vercel-Blob', 'Steam-API'],
     liveUrl: 'https://skins.radhey.dev',
     githubUrl: 'https://github.com/jR4dh3y/seanmarket',
   },
   {
-    title: 'CS2 Stats Profile',
-    desc: 'My custom CS2 stats profile page showing detailed statistics, my ingame hilights from allstars, my inventory and more.',
-    image: '/assets/cs2.png',
-    tags: ['Svelte','Vite', 'Allstar-API', 'Steam-API', 'Leetify-API'],
-    liveUrl: 'https://jr4.in',
-    githubUrl: 'https://github.com/jR4dh3y/csprofile'
+    title: 'File Manager',
+    desc: 'File manager for Linux servers with multi-mount browsing, file transfer, real time updates, and more. Written in Svelte & Go',
+    image: '/assets/files.png',
+    tags: ['Svelte', 'Go', 'Docker', 'Nginx'],
+    githubUrl: 'https://github.com/jR4dh3y/homelab-filemgr',
+    liveUrl: 'https://files.jr4.in/test'
   },
   {
     title: 'TL;DR AI',
     desc: 'Summarize WhatsApp Groups Chats using AI. Uses your openrouter API key to process data(you can you free models).',
     image: 'https://github.com/jR4dh3y/tldr-desktop/raw/master/img/ss.png',
-    tags: ['React','Electron','TypeScript', 'OpenRouter',],
+    tags: ['React', 'Electron', 'TypeScript', 'OpenRouter',],
     githubUrl: 'https://github.com/jR4dh3y/tldr-desktop'
   },
   {
     title: 'Tenant Manager',
     desc: 'A mobile app to manage tenant and log their electricity usages.',
     image: 'https://github.com/jR4dh3y/tennet-manager/raw/master/photo.png',
-    tags: ['React Native','Expo','React-Native-Paper','TypeScript'],
+    tags: ['React Native', 'Expo', 'React-Native-Paper', 'TypeScript'],
     githubUrl: 'https://github.com/jR4dh3y/tennet-manager',
   },
 ];
+
 
 export default function Projects() {
   const [hovered, setHovered] = useState<number | null>(null);
 
   return (
     <div className="w-full">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+      <motion.div
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3"
+        variants={staggerContainer}
+        initial="hidden"
+        animate="visible"
+      >
         {projects.map((project, i) => (
           <motion.div
             key={project.title}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.08, duration: 0.4 }}
+            variants={fadeInUp}
             onMouseEnter={() => setHovered(i)}
             onMouseLeave={() => setHovered(null)}
             className="group relative"
           >
             {/* Card */}
             <div className="relative h-44 rounded-lg border border-muted/60 bg-card/50 backdrop-blur-sm overflow-hidden transition-all duration-300 hover:border-primary/40">
-              
+
               {/* Background image on hover */}
               <AnimatePresence>
                 {hovered === i && (
@@ -132,16 +138,16 @@ export default function Projects() {
                   </div>
                   <div className="flex gap-1 shrink-0">
                     {project.liveUrl && (
-                      <Link 
-                        href={project.liveUrl} 
+                      <Link
+                        href={project.liveUrl}
                         target="_blank"
                         className="p-2 rounded-md hover:bg-accent/20 text-muted-foreground hover:text-accent transition-colors"
                       >
                         <ArrowUpRight className="w-5 h-5" />
                       </Link>
                     )}
-                    <Link 
-                      href={project.githubUrl} 
+                    <Link
+                      href={project.githubUrl}
                       target="_blank"
                       className="p-2 rounded-md hover:bg-accent/20 text-muted-foreground hover:text-accent transition-colors"
                     >
@@ -153,9 +159,9 @@ export default function Projects() {
                 {/* Bottom: Tags */}
                 <div className="flex flex-wrap gap-2">
                   {project.tags.map((tag) => (
-                    <Badge 
-                      key={tag} 
-                      variant="secondary" 
+                    <Badge
+                      key={tag}
+                      variant="secondary"
                       className="text-xs px-2.5 py-1 h-6 bg-muted/70 group-hover:bg-white/10 transition-colors"
                     >
                       {tag}
@@ -168,16 +174,16 @@ export default function Projects() {
               <motion.div
                 className="absolute -bottom-px left-3 right-3 h-px bg-gradient-to-r from-transparent via-primary to-transparent"
                 initial={{ opacity: 0, scaleX: 0 }}
-                animate={{ 
-                  opacity: hovered === i ? 1 : 0, 
-                  scaleX: hovered === i ? 1 : 0 
+                animate={{
+                  opacity: hovered === i ? 1 : 0,
+                  scaleX: hovered === i ? 1 : 0
                 }}
                 transition={{ duration: 0.3 }}
               />
             </div>
           </motion.div>
         ))}
-      </div>
-    </div>
+      </motion.div>
+    </div >
   );
 }

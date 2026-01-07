@@ -5,10 +5,10 @@ import ExperienceList from './experience-list';
 
 export default function Experience() {
     return (
-        <section id="experience" className="py-20 sm:py-32 overflow-hidden bg-muted/30">
+        <section id="experience" className="py-20 sm:py-32 overflow-hidden">
             <div className="container">
-                <div className="mb-12 flex flex-col items-center justify-center text-center">
-                    <h2 className="font-headline text-4xl font-extrabold tracking-tight sm:text-5xl mb-6">
+                <div className="mb-12">
+                    <h2 className="font-headline text-4xl font-extrabold tracking-tight sm:text-5xl">
                         Experience
                     </h2>
                 </div>
