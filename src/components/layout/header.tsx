@@ -10,6 +10,7 @@ import { useState, useEffect } from 'react';
 const navLinks = [
   { href: '#home', label: 'Home' },
   { href: '#experience', label: 'Experience' },
+  { href: '#homelab', label: 'Homelab' },
   { href: '#work', label: 'Work' },
   { href: '#about', label: 'About' },
   { href: '#contact', label: 'Contact' },
@@ -24,7 +25,7 @@ export default function Header() {
       const currentScrollY = window.scrollY;
       setScrolled(currentScrollY > 10);
     };
-    
+
     handleScroll();
 
     window.addEventListener('scroll', handleScroll, { passive: true });

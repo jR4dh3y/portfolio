@@ -4,8 +4,10 @@ import Header from '@/components/layout/header';
 import Hero from '@/components/sections/hero';
 import WorkSection from '@/components/sections/work';
 import Experience from '@/components/sections/experience';
+import HomelabCombined from '@/components/homelab-variants/combined';
 import About from '@/components/sections/about';
 import Contact from '@/components/sections/contact';
+
 import { motion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 
@@ -42,11 +44,12 @@ export default function Home() {
       <main className="flex-1">
         <Hero ref={heroRef} />
         <Experience />
+        <HomelabCombined />
         <WorkSection />
         <About />
         <Contact />
       </main>
-      {/* <Footer /> */}
+
     </motion.div>
   );
 }

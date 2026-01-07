@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { Github, Linkedin, Twitter, ArrowDown, Download, Mail } from 'lucide-react';
+import { Github, Linkedin, ArrowDown, Download, Mail } from 'lucide-react';
 import Link from 'next/link';
 import ParticleSystem from '@/components/common/particle-system';
 import SocialButtons from '@/components/ui/dinamic-buttons';
@@ -9,10 +9,24 @@ import { motion } from 'framer-motion';
 import { forwardRef, useEffect, useState } from 'react';
 import { fadeInUp, scaleIn, staggerContainer } from '@/lib/motion-variants';
 
+const XIcon = ({ className }: { className?: string }) => (
+  <svg
+    role="img"
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
+    fill="currentColor"
+    className={className}
+  >
+    <title>X</title>
+    <path d="M14.234 10.162 22.977 0h-2.072l-7.591 8.824L7.251 0H.258l9.168 13.343L.258 24H2.33l8.016-9.318L16.749 24h6.993zm-2.837 3.299-.929-1.329L3.076 1.56h3.182l5.965 8.532.929 1.329 7.754 11.09h-3.182z" />
+  </svg>
+);
+
+
 const socialLinks = [
   { icon: Github, href: 'https://github.com/jr4dh3y', label: 'Github' },
   { icon: Linkedin, href: 'https://linkedin.com/in/radheykalra', label: 'LinkedIn' },
-  // { icon: Twitter, href: 'https://twitter.com/jr4dh3y', label: 'Twitter' },
+  { icon: XIcon, href: 'https://x.com/jr4dh3y', label: 'X' },
   { icon: Mail, href: 'mailto:radheykalra901@gmail.com', label: 'Email' },
   { icon: Download, href: 'assets/Radhey_cv.pdf', label: 'Download CV' },
 ];
@@ -68,7 +82,7 @@ function HeroContent({ profilePictureUrl }: { profilePictureUrl: string }) {
               variants={fadeInUp}
               className="mb-6 text-lg text-foreground/80"
             >
-              I am a CSE student from India who works on ML/audio processing and builds web applications.
+              I am a CSE student from India who Builds and Works on ML/audio processing, Full Stack Applications, and Linux Servers.
             </motion.p>
             <motion.div
               variants={fadeInUp}
@@ -92,7 +106,7 @@ function HeroContent({ profilePictureUrl }: { profilePictureUrl: string }) {
         }}
         className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10"
       >
-        <Link href="#work" aria-label="Scroll to projects">
+        <Link href="#experience" aria-label="Scroll to Experience">
           <ArrowDown className="h-8 w-8 text-primary" />
         </Link>
       </motion.div>

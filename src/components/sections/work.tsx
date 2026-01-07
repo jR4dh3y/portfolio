@@ -11,8 +11,8 @@ export default function WorkSection() {
     return (
         <section id="work" className="py-20 sm:py-32 overflow-hidden">
             <div className="container">
-                <div className="mb-12 flex flex-col items-center justify-center text-center">
-                    <h2 className="font-headline text-4xl font-extrabold tracking-tight sm:text-5xl mb-6">
+                <div className="mb-12 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
+                    <h2 className="font-headline text-4xl font-extrabold tracking-tight sm:text-5xl">
                         My Work & Skills
                     </h2>
 
