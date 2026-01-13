@@ -226,7 +226,7 @@ export default function Contact() {
                                   <div className="relative flex items-center">
                                     <Input
                                       placeholder="John Doe"
-                                      className="border-0 border-b border-muted-foreground/30 bg-transparent py-1 px-0 font-mono text-sm text-foreground shadow-none placeholder:text-muted-foreground/50 focus-visible:border-primary/50 focus-visible:ring-0 rounded-none h-auto transition-colors"
+                                      className="border-0 border-b border-muted-foreground/30 bg-transparent py-1 px-0 font-mono text-sm text-foreground shadow-none placeholder:text-muted-foreground/50 focus-visible:border-primary/50 focus-visible:ring-0 focus-visible:ring-offset-0 focus:outline-none rounded-none h-auto transition-colors"
                                       {...field}
                                     />
                                   </div>
@@ -249,7 +249,7 @@ export default function Contact() {
                                   <div className="relative flex items-center">
                                     <Input
                                       placeholder="john@example.com"
-                                      className="border-0 border-b border-muted-foreground/30 bg-transparent py-1 px-0 font-mono text-sm text-foreground shadow-none placeholder:text-muted-foreground/50 focus-visible:border-primary/50 focus-visible:ring-0 rounded-none h-auto transition-colors"
+                                      className="border-0 border-b border-muted-foreground/30 bg-transparent py-1 px-0 font-mono text-sm text-foreground shadow-none placeholder:text-muted-foreground/50 focus-visible:border-primary/50 focus-visible:ring-0 focus-visible:ring-offset-0 focus:outline-none rounded-none h-auto transition-colors"
                                       {...field}
                                     />
                                   </div>
@@ -272,7 +272,7 @@ export default function Contact() {
                                   <div className="relative">
                                     <Textarea
                                       placeholder="Hello world..."
-                                      className="min-h-[120px] border-0 border-b border-muted-foreground/30 bg-transparent py-0 px-0 font-mono text-sm text-foreground shadow-none placeholder:text-muted-foreground/50 focus-visible:border-primary/50 focus-visible:ring-0 rounded-none resize-none transition-colors"
+                                      className="min-h-[120px] border-0 border-b border-muted-foreground/30 bg-transparent py-0 px-0 font-mono text-sm text-foreground shadow-none placeholder:text-muted-foreground/50 focus-visible:border-primary/50 focus-visible:ring-0 focus-visible:ring-offset-0 focus:outline-none rounded-none resize-none transition-colors"
                                       {...field}
                                     />
                                   </div>
