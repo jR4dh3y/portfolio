@@ -136,7 +136,7 @@ export default function Contact() {
                     <div className="absolute inset-0 rounded-full bg-accent animate-ping opacity-75"></div>
                   </div>
                 </div>
-                <span className="text-accent">System Online / Open to Work or Intern</span>
+                <span className="text-accent">Open to Work or Intern</span>
               </div>
             </div>
 
