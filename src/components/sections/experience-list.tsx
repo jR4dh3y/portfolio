@@ -28,6 +28,15 @@ Built and maintained a tutorial website hosting video walkthroughs of Google Clo
             { label: 'Tutorial Website', href: 'https://gcp-tutorial.vercel.app' },
             { label: 'Github Repository', href: 'https://github.com/gdgoc-miet/gcp-tutorial-ui' }
         ]
+    },
+    {
+        company: 'AWS Cloud Club MIET Jammu',
+        role: 'Cloud and DevOps Lead',
+        period: 'Jan 2026 - Present',
+        description: `Leading cloud and DevOps initiatives as part of the core team.
+Driving adoption of AWS cloud technologies and implementing DevOps best practices through workshops, projects, and mentoring.`,
+        skills: ['AWS', 'DevOps', 'CI/CD', 'Docker', 'Kubernetes', 'Terraform'],
+        links: []
     }
 ];
 
