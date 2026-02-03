@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import type { LucideIcon } from 'lucide-react';
 
 interface SocialLink {
-  icon: LucideIcon;
+  icon: LucideIcon | React.ComponentType<{ className?: string }>;
   href: string;
   label: string;
 }

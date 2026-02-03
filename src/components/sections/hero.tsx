@@ -1,48 +1,30 @@
 'use client';
 
 import Image from 'next/image';
-import { Github, Linkedin, ArrowDown, Download, Mail } from 'lucide-react';
+import { ArrowDown } from 'lucide-react';
 import Link from 'next/link';
 import ParticleSystem from '@/components/common/particle-system';
 import SocialButtons from '@/components/ui/dinamic-buttons';
 import { motion } from 'framer-motion';
-import { forwardRef, useEffect, useState } from 'react';
+import { forwardRef } from 'react';
 import { fadeInUp, scaleIn, staggerContainer } from '@/lib/motion-variants';
+import { socialLinks } from '@/lib/constants/social-links';
 
-const XIcon = ({ className }: { className?: string }) => (
-  <svg
-    role="img"
-    viewBox="0 0 24 24"
-    xmlns="http://www.w3.org/2000/svg"
-    fill="currentColor"
-    className={className}
-  >
-    <title>X</title>
-    <path d="M14.234 10.162 22.977 0h-2.072l-7.591 8.824L7.251 0H.258l9.168 13.343L.258 24H2.33l8.016-9.318L16.749 24h6.993zm-2.837 3.299-.929-1.329L3.076 1.56h3.182l5.965 8.532.929 1.329 7.754 11.09h-3.182z" />
-  </svg>
-);
-
-
-const socialLinks = [
-  { icon: Github, href: 'https://github.com/jr4dh3y', label: 'Github' },
-  { icon: Linkedin, href: 'https://linkedin.com/in/radheykalra', label: 'LinkedIn' },
-  { icon: XIcon, href: 'https://x.com/jr4dh3y', label: 'X' },
-  { icon: Mail, href: 'mailto:radheykalra901@gmail.com', label: 'Email' },
-  { icon: Download, href: 'assets/Radhey_cv.pdf', label: 'Download CV' },
-];
+// Hoisted animation configuration to prevent re-renders
+const arrowBounceTransition = {
+  duration: 1,
+  delay: 1.5,
+  repeat: Infinity,
+  repeatType: "reverse" as const,
+  repeatDelay: 0.5
+};
 
 function HeroContent({ profilePictureUrl }: { profilePictureUrl: string }) {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
   return (
     <div className="container relative z-10 flex h-full items-center justify-center px-4">
       <motion.div
         initial="hidden"
-        animate={mounted ? "visible" : "hidden"}
+        animate="visible"
         variants={staggerContainer}
         className="flex items-center justify-center w-full max-w-4xl"
       >
@@ -97,13 +79,7 @@ function HeroContent({ profilePictureUrl }: { profilePictureUrl: string }) {
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{
-          duration: 1,
-          delay: 1.5,
-          repeat: Infinity,
-          repeatType: "reverse",
-          repeatDelay: 0.5
-        }}
+        transition={arrowBounceTransition}
         className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10"
       >
         <Link href="#experience" aria-label="Scroll to Experience">
@@ -113,37 +89,11 @@ function HeroContent({ profilePictureUrl }: { profilePictureUrl: string }) {
     </div>
   );
 }
-const Hero = forwardRef<HTMLElement, React.HTMLAttributes<HTMLElement>>(function Hero(props, ref) {
-  const defaultUsername = 'jr4dh3y';
-  const defaultAvatar = `https://avatars.githubusercontent.com/${defaultUsername}`;
-  const [profilePictureUrl, setProfilePictureUrl] = useState(defaultAvatar);
+interface HeroProps extends React.HTMLAttributes<HTMLElement> {
+  profilePictureUrl: string;
+}
 
-  useEffect(() => {
-    const fetchProfile = async () => {
-      const username = defaultUsername;
-      const fallbackAvatar = `https://avatars.githubusercontent.com/${username}`;
-      try {
-        const response = await fetch(`https://api.github.com/users/${username}`, {
-          headers: {
-            Accept: 'application/vnd.github+json',
-          },
-          cache: 'no-store',
-        });
-        if (response.ok) {
-          const data = await response.json();
-          setProfilePictureUrl(data.avatar_url ?? fallbackAvatar);
-        } else {
-          setProfilePictureUrl(fallbackAvatar);
-        }
-      } catch (error) {
-        console.error('Error fetching GitHub profile:', error);
-        setProfilePictureUrl(fallbackAvatar);
-      }
-    };
-
-    fetchProfile();
-  }, []);
-
+const Hero = forwardRef<HTMLElement, HeroProps>(function Hero({ profilePictureUrl, ...props }, ref) {
   return (
     <section
       id="home"

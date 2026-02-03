@@ -10,7 +10,11 @@ import HomelabCombined from '@/components/homelab-variants/combined';
 import About from '@/components/sections/about';
 import Contact from '@/components/sections/contact';
 
-export default function PageContent() {
+interface PageContentProps {
+  profilePictureUrl: string;
+}
+
+export default function PageContent({ profilePictureUrl }: PageContentProps) {
   const heroRef = useRef<HTMLElement | null>(null);
   const [showHeader, setShowHeader] = useState(false);
 
@@ -39,9 +43,9 @@ export default function PageContent() {
       transition={{ duration: 0.5 }}
       className="flex min-h-screen flex-col"
     >
-      {showHeader && <Header />}
+      {showHeader ? <Header /> : null}
       <main className="flex-1">
-        <Hero ref={heroRef} />
+        <Hero ref={heroRef} profilePictureUrl={profilePictureUrl} />
         <Experience />
         <HomelabCombined />
         <WorkSection />

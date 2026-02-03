@@ -94,7 +94,7 @@ const ParticleSystem = () => {
       // Convert mouse position to world coordinates
       mouseWorld.set(mouse.x, mouse.y, 0).unproject(camera);
     };
-    window.addEventListener('mousemove', onMouseMove);
+    window.addEventListener('mousemove', onMouseMove, { passive: true });
 
     // Animation
     const clock = new THREE.Clock();

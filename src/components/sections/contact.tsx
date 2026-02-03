@@ -15,32 +15,12 @@ import {
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
-import { Send, Github, Linkedin, Mail, MapPin, Clock, Download, ArrowUp } from 'lucide-react';
+import { Send, MapPin, Clock, ArrowUp } from 'lucide-react';
 import { contactSchema, ContactFormData } from '@/lib/schemas/contact';
 import { motion, AnimatePresence } from 'framer-motion';
 import { fadeInUp, staggerContainer, fadeInLeft } from '@/lib/motion-variants';
 import SocialButtons from '@/components/ui/dinamic-buttons';
-
-const XIcon = ({ className }: { className?: string }) => (
-  <svg
-    role="img"
-    viewBox="0 0 24 24"
-    xmlns="http://www.w3.org/2000/svg"
-    fill="currentColor"
-    className={className}
-  >
-    <title>X</title>
-    <path d="M14.234 10.162 22.977 0h-2.072l-7.591 8.824L7.251 0H.258l9.168 13.343L.258 24H2.33l8.016-9.318L16.749 24h6.993zm-2.837 3.299-.929-1.329L3.076 1.56h3.182l5.965 8.532.929 1.329 7.754 11.09h-3.182z" />
-  </svg>
-);
-
-const socialLinks = [
-  { icon: Github, href: 'https://github.com/jr4dh3y', label: 'Github' },
-  { icon: Linkedin, href: 'https://linkedin.com/in/radheykalra', label: 'LinkedIn' },
-  { icon: XIcon as any, href: 'https://x.com/jr4dh3y', label: 'X' },
-  { icon: Mail, href: 'mailto:radheykalra901@gmail.com', label: 'Email' },
-  { icon: Download, href: 'assets/Radhey_cv.pdf', label: 'Download CV' },
-];
+import { socialLinks } from '@/lib/constants/social-links';
 
 const formSchema = contactSchema;
 

@@ -1,12 +1,7 @@
-import Header from '@/components/layout/header';
-import Hero from '@/components/sections/hero';
-import WorkSection from '@/components/sections/work';
-import Experience from '@/components/sections/experience';
-import HomelabCombined from '@/components/homelab-variants/combined';
-import About from '@/components/sections/about';
-import Contact from '@/components/sections/contact';
 import PageContent from '@/components/page-content';
+import { getGitHubProfile } from '@/lib/github';
 
-export default function Home() {
-  return <PageContent />;
+export default async function Home() {
+  const profilePictureUrl = await getGitHubProfile('jr4dh3y');
+  return <PageContent profilePictureUrl={profilePictureUrl} />;
 }
