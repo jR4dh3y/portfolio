@@ -6,5 +6,5 @@ export const socialLinks = [
   { icon: Linkedin, href: 'https://linkedin.com/in/radheykalra', label: 'LinkedIn' },
   { icon: XIcon, href: 'https://x.com/jr4dh3y', label: 'X' },
   { icon: Mail, href: 'mailto:radheykalra901@gmail.com', label: 'Email' },
-  { icon: Download, href: 'assets/Radhey_cv.pdf', label: 'Download CV' },
+  { icon: Download, href: 'https://raw.githubusercontent.com/jR4dh3y/cv/main/main.pdf', label: 'Download CV' },
 ];
