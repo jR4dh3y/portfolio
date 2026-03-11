@@ -20,12 +20,12 @@ const projects = [
     buttonTheme: "dark" as const,
   },
   {
-    title: "Homelab File Manager",
+    title: "BoxBox",
     desc: "Fast, lightweight file manager for Linux servers with multi-mount browsing, chunked transfers, and real-time updates. Supports live media preview, streaming, downloads, and Monaco Editor integration for in-browser file editing.",
     image: "/assets/files.png",
     tags: ["SvelteKit", "Go", "Docker", "WebSocket", "Monaco Editor"],
-    githubUrl: "https://github.com/jR4dh3y/homelab-filemgr",
-    liveUrl: "https://files.jr4.in/test",
+    githubUrl: "https://github.com/jR4dh3y/boxbox",
+    liveUrl: "https://boxbox.radhey.dev/",
   },
   {
     title: "Pico32",
