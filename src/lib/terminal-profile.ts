@@ -27,11 +27,12 @@ const ESC = "\x1b";
 const CLEAR_SCREEN = `${ESC}[2J${ESC}[H`;
 
 // ── Layout constants ────────────────────────────
-const WIDTH = 120; // total outer frame width
-const INNER = WIDTH - 4; // usable content between  │_  and  _│
-const BOX_W = 55; // width of each info box
-const GAP = 4; // gap between left and right columns
-const INDENT = " "; // left indent for box grid inside frame
+const WIDTH = 120;
+const INNER = WIDTH - 4; // usable space between │_ and _│
+const BOX_W = 55;
+const GAP = 4;
+const FULL_BOX_W = BOX_W + GAP + BOX_W; // 114 – same as the two-column row
+const INDENT = " ";
 
 // ── Styling helpers ─────────────────────────────
 const color = (value: string, ...styles: string[]) =>
@@ -41,7 +42,10 @@ const dim = (value: string) => color(value, ANSI.brightBlack);
 const white = (value: string) => color(value, ANSI.brightWhite, ANSI.bold);
 const green = (value: string) => color(value, ANSI.brightGreen, ANSI.bold);
 
-const stripAnsi = (value: string) => value.replace(/\x1b\[[0-9;]*m/g, "");
+// Strip both SGR (colors) and OSC 8 (hyperlinks) for width math
+const stripAnsi = (value: string) =>
+  value.replace(/\x1b\][^\x07]*\x07/g, "").replace(/\x1b\[[0-9;]*m/g, "");
+
 const visibleLength = (value: string) => stripAnsi(value).length;
 
 const padRight = (value: string, width: number) => {
@@ -56,24 +60,27 @@ const centerText = (value: string, width: number) => {
   return " ".repeat(left) + value + " ".repeat(diff - left);
 };
 
+// OSC 8 clickable hyperlink (supported by most modern terminals)
+const link = (url: string, label: string, ...styles: string[]) =>
+  `\x1b]8;;${url}\x07${styles.join("")}${label}${ANSI.reset}\x1b]8;;\x07`;
+
 // ── Outer frame primitives ──────────────────────
-const F = ANSI.cyan; // frame accent color
+const F = ANSI.cyan;
 
 const wrap = (content: string): string =>
   `${color("│", F)} ${padRight(content, INNER)} ${color("│", F)}`;
 
 const empty = (): string => wrap("");
 
-const separator = (): string =>
-  color(`├${"─".repeat(WIDTH - 2)}┤`, F);
+const separator = (): string => color(`├${"─".repeat(WIDTH - 2)}┤`, F);
 
 const buildTitleBar = (): string => {
-  const dots =
-    `${color("●", ANSI.red)} ${color("●", ANSI.yellow)} ${color("●", ANSI.green)}`;
-  const title = color("radhey@portfolio: ~", ANSI.brightWhite, ANSI.bold);
-  // visible widths: ╭───(4) + space(1) + ●_●_●(5) + space(1) + ───(3) + space(1)
-  //               + radhey@portfolio:_~(20) + space(1) + fill + ╮(1) = 37 fixed
-  const fill = WIDTH - 37;
+  const dots = `${color("●", ANSI.red)} ${color("●", ANSI.yellow)} ${color("●", ANSI.green)}`;
+  const titleText = "radhey@portfolio: ~";
+  const title = color(titleText, ANSI.brightWhite, ANSI.bold);
+  // ╭─── (5) + ● ● ● (5) + ─── (5) + title + ─…─╮ (fill+1) = WIDTH
+  // fixed = 5 + 5 + 5 + titleText.length + 1(space) + 1(╮) = 17 + titleText.length
+  const fill = WIDTH - 17 - titleText.length;
   return (
     color("╭─── ", F) +
     dots +
@@ -84,8 +91,7 @@ const buildTitleBar = (): string => {
   );
 };
 
-const bottomBar = (): string =>
-  color(`╰${"─".repeat(WIDTH - 2)}╯`, F);
+const bottomBar = (): string => color(`╰${"─".repeat(WIDTH - 2)}╯`, F);
 
 // ── Content builders ────────────────────────────
 const combineBlocks = (
@@ -106,25 +112,23 @@ const combineBlocks = (
   return output;
 };
 
+// Fixed: builds the top border without nesting color() so ANSI reset
+// from the title doesn't eat the trailing border characters.
 const createBox = (
   title: string,
   contentLines: string[],
   width: number = BOX_W,
   borderColor = ANSI.brightBlack,
 ) => {
-  const bs = [borderColor];
-  const ts = [borderColor, ANSI.bold];
-
   const topFill = width - visibleLength(title) - 5;
-  const top = color(
-    `╭─ ${color(title, ...ts)} ${"─".repeat(Math.max(0, topFill))}╮`,
-    ...bs,
-  );
-  const bottom = color(`╰${"─".repeat(width - 2)}╯`, ...bs);
+  const top =
+    `${borderColor}╭─ ${borderColor}${ANSI.bold}${title}${ANSI.reset}` +
+    `${borderColor} ${"─".repeat(Math.max(0, topFill))}╮${ANSI.reset}`;
+  const bottom = color(`╰${"─".repeat(width - 2)}╯`, borderColor);
 
   const body = ["", ...contentLines, ""].map((line) => {
     const padded = padRight(line, width - 4);
-    return `${color("│", ...bs)} ${padded} ${color("│", ...bs)}`;
+    return `${color("│", borderColor)} ${padded} ${color("│", borderColor)}`;
   });
 
   return [top, ...body, bottom];
@@ -134,7 +138,7 @@ const bullet = (text: string, accent = ANSI.cyan) =>
   `  ${color("●", accent, ANSI.bold)} ${text}`;
 
 const kv = (key: string, value: string, keyColor = ANSI.cyan) =>
-  `  ${color(key.padEnd(12, " "), keyColor, ANSI.bold)} ${value}`;
+  `  ${color(key.padEnd(10, " "), keyColor, ANSI.bold)} ${value}`;
 
 // ── ASCII art hero ──────────────────────────────
 const hero = [
@@ -147,81 +151,80 @@ const hero = [
 ].map((line) => color(line, ANSI.cyan, ANSI.bold));
 
 // ── Section boxes ───────────────────────────────
-const whatIDo = createBox(
-  "WHAT I DO",
-  [
-    bullet(
-      "Build full-stack apps with React, Next.js, Svelte",
-      ANSI.brightGreen,
-    ),
-    bullet(
-      "Work on ML, audio processing with Python, PyTorch",
-      ANSI.brightGreen,
-    ),
-    bullet(
-      "Run Linux servers, self-host, and homelab infra",
-      ANSI.brightGreen,
-    ),
-    bullet(
-      "Use Docker, AWS, GCP, CI/CD, K8s, Terraform",
-      ANSI.brightGreen,
-    ),
-  ],
-  BOX_W,
-  ANSI.brightBlack,
-);
 
+// Left column: STACK (mirrors skills.tsx categories, minus Systems & OS)
 const stack = createBox(
   "STACK",
   [
-    kv("Langs", "Python · TS · C/C++ · SQL · Go · Lua"),
-    kv("Front", "React · Next.js · Svelte · Tailwind"),
-    kv("Back", "Node · Express · GraphQL · Postgres"),
-    kv("AI/ML", "PyTorch · TensorFlow · Transformers"),
-    kv("Ops", "Linux · Docker · AWS · GCP · CI/CD"),
+    kv("Langs", "Python · TS · C/C++ · Go · Rust · SQL"),
+    kv("Ui", "Next.js · Svelte · Astro, Tailwind"),
+    kv("DB", "Postgres · MySQL · ConvexDB"),
+    kv("AI/ML", "PyTorch · TF · Transformers · sklearn"),
+    kv("DevOps", "Git · Docker · CMake · CI/CD"),
+    kv("Cloud", "AWS · GCP · K8s · Terraform"),
+    kv("More", "Bun · Vercel · Cloudflare · LaTeX "),
   ],
   BOX_W,
   ANSI.brightBlack,
 );
 
+// Right column: HIGHLIGHTS & SIDE QUESTS
 const highlights = createBox(
   "HIGHLIGHTS & SIDE QUESTS",
   [
-    bullet(
-      `${green("Cloud Lead")} @ GDGoC MIET Jammu`,
-      ANSI.brightYellow,
-    ),
+    bullet(`${green("Cloud Lead")} @ GDGoC MIET Jammu`, ANSI.brightYellow),
     bullet(
       `${green("Cloud & DevOps Lead")} @ AWS Cloud Club`,
       ANSI.brightYellow,
     ),
     "",
     bullet("Music, audio breakdowns, sound design", ANSI.brightMagenta),
-    bullet(
-      "Open source rabbit holes & tool hoarding",
-      ANSI.brightMagenta,
-    ),
+    bullet("Open source rabbit holes & tool hoarding", ANSI.brightMagenta),
     bullet("Breaking things, rebuilding them better", ANSI.brightMagenta),
   ],
   BOX_W,
   ANSI.brightBlack,
 );
 
+// Full-width row: FIND ME — with clickable OSC 8 hyperlinks
 const findMe = createBox(
   "FIND ME",
   [
-    kv("GitHub", color("github.com/jr4dh3y", ANSI.brightBlue)),
-    kv("LinkedIn", color("linkedin.com/in/radheykalra", ANSI.brightBlue)),
-    kv("X", color("x.com/jr4dh3y", ANSI.brightBlue)),
-    kv("Email", color("radheykalra901@gmail.com", ANSI.brightBlue)),
+    kv(
+      "GitHub",
+      link(
+        "https://github.com/jr4dh3y",
+        "https://github.com/jr4dh3y",
+        ANSI.brightBlue,
+      ),
+    ),
+    kv(
+      "LinkedIn",
+      link(
+        "https://linkedin.com/in/radheykalra",
+        "https://linkedin.com/in/radheykalra",
+        ANSI.brightBlue,
+      ),
+    ),
+    kv(
+      "X",
+      link("https://x.com/jr4dh3y", "https://x.com/jr4dh3y", ANSI.brightBlue),
+    ),
+    kv(
+      "Email",
+      link(
+        "mailto:radheykalra901@gmail.com",
+        "radheykalra901@gmail.com",
+        ANSI.brightBlue,
+      ),
+    ),
   ],
-  BOX_W,
+  FULL_BOX_W,
   ANSI.brightBlack,
 );
 
-// ── Compose two-column grid ─────────────────────
-const topRow = combineBlocks(whatIDo, highlights);
-const bottomRow = combineBlocks(stack, findMe);
+// ── Compose grid ────────────────────────────────
+const row = combineBlocks(stack, highlights);
 
 // ── Assemble dashboard ──────────────────────────
 const dashboard: string[] = [
@@ -244,18 +247,18 @@ const dashboard: string[] = [
   empty(),
   separator(),
   empty(),
-  ...topRow.map((line) => wrap(INDENT + line)),
+  ...row.map((line) => wrap(INDENT + line)),
   empty(),
-  ...bottomRow.map((line) => wrap(INDENT + line)),
+  ...findMe.map((line) => wrap(INDENT + line)),
   empty(),
-  separator(),
-  wrap(
-    centerText(
-      `${dim("curl radhey.dev")} ${color("│", ANSI.brightBlack)} ${dim("Made with")} ${color("♥", ANSI.red)} ${dim("and too much caffeine")}`,
-      INNER,
-    ),
-  ),
   bottomBar(),
+
+  // wrap(
+  //   centerText(
+  //     `${dim("curl radhey.dev")} ${color("│", ANSI.brightBlack)} ${dim("Made with")} ${color("♥", ANSI.red)} ${dim("and too much caffeine")}`,
+  //     INNER,
+  //   ),
+  // ),
 ];
 
 export const terminalProfile = [CLEAR_SCREEN, ...dashboard].join("\n");
