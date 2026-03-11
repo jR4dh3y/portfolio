@@ -1,19 +1,23 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { terminalProfile } from "@/lib/terminal-profile";
+import { NextRequest, NextResponse } from "next/server";
 
 function buildAllowedOrigins(req: NextRequest) {
   const dynamicOrigin = `${req.nextUrl.protocol}//${req.nextUrl.host}`;
   return new Set(
     [
-      process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, ''),
+      process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, ""),
       process.env.VERCEL_URL && `https://${process.env.VERCEL_URL}`,
-      'http://localhost:9002',
-      'http://localhost:3000',
+      "http://localhost:9002",
+      "http://localhost:3000",
       dynamicOrigin,
-    ].filter(Boolean) as string[]
+    ].filter(Boolean) as string[],
   );
 }
 
-function isAllowedOrigin(origin: string | null | undefined, allowedOrigins: Set<string>): boolean {
+function isAllowedOrigin(
+  origin: string | null | undefined,
+  allowedOrigins: Set<string>,
+): boolean {
   if (!origin) return false;
   try {
     const url = new URL(origin);
@@ -29,25 +33,44 @@ export function middleware(req: NextRequest) {
   const allowedOrigins = buildAllowedOrigins(req);
 
   // Global security headers
-  res.headers.set('X-Content-Type-Options', 'nosniff');
-  res.headers.set('X-Frame-Options', 'DENY');
-  res.headers.set('X-XSS-Protection', '1; mode=block');
-  res.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
-  res.headers.set('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
+  res.headers.set("X-Content-Type-Options", "nosniff");
+  res.headers.set("X-Frame-Options", "DENY");
+  res.headers.set("X-XSS-Protection", "1; mode=block");
+  res.headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
+  res.headers.set(
+    "Permissions-Policy",
+    "camera=(), microphone=(), geolocation=()",
+  );
+
+  const userAgent = req.headers.get("user-agent")?.toLowerCase() ?? "";
+
+  if (req.nextUrl.pathname === "/" && userAgent.includes("curl")) {
+    return new NextResponse(terminalProfile, {
+      status: 200,
+      headers: {
+        "Content-Type": "text/plain; charset=utf-8",
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "DENY",
+        "X-XSS-Protection": "1; mode=block",
+        "Referrer-Policy": "strict-origin-when-cross-origin",
+        "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
+      },
+    });
+  }
 
   // Protect contact API endpoint
-  if (req.nextUrl.pathname === '/api/contact') {
+  if (req.nextUrl.pathname === "/api/contact") {
     // Only allow POST
-    if (req.method !== 'POST') {
-      return new NextResponse(JSON.stringify({ error: 'Method Not Allowed' }), {
+    if (req.method !== "POST") {
+      return new NextResponse(JSON.stringify({ error: "Method Not Allowed" }), {
         status: 405,
-        headers: { 'Content-Type': 'application/json' },
+        headers: { "Content-Type": "application/json" },
       });
     }
 
     // Validate origin/referer to prevent cross-site requests
-    const origin = req.headers.get('origin');
-    const referer = req.headers.get('referer');
+    const origin = req.headers.get("origin");
+    const referer = req.headers.get("referer");
 
     const originAllowed = isAllowedOrigin(origin, allowedOrigins);
     const refererAllowed = isAllowedOrigin(referer, allowedOrigins);
@@ -58,9 +81,9 @@ export function middleware(req: NextRequest) {
     }
 
     if (!originAllowed && !refererAllowed) {
-      return new NextResponse(JSON.stringify({ error: 'Forbidden' }), {
+      return new NextResponse(JSON.stringify({ error: "Forbidden" }), {
         status: 403,
-        headers: { 'Content-Type': 'application/json' },
+        headers: { "Content-Type": "application/json" },
       });
     }
   }
@@ -69,7 +92,5 @@ export function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: [
-    '/((?!_next/static|_next/image|favicon.ico|assets/).*)',
-  ],
+  matcher: ["/((?!_next/static|_next/image|favicon.ico|assets/).*)"],
 };
