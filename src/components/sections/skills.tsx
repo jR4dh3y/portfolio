@@ -23,8 +23,11 @@ const skillCategories: SkillCategory[] = [
       { name: 'Python' },
       { name: 'TypeScript/JavaScript' },
       { name: 'C/C++' },
+      { name: 'Go' },
+      { name: 'Rust' },
       { name: 'SQL' },
-      { name: 'Lua' }
+      { name: 'Lua' },
+      { name: 'LaTeX' }
     ],
   },
   {
@@ -33,10 +36,12 @@ const skillCategories: SkillCategory[] = [
     skills: [
       { name: 'React/Next.js' },
       { name: 'Svelte' },
+      { name: 'Astro' },
       { name: 'React Native' },
       { name: 'Expo' },
       { name: 'Tailwind CSS' },
       { name: 'QML' },
+      { name: 'Bun' },
     ],
   },
   {
@@ -49,6 +54,9 @@ const skillCategories: SkillCategory[] = [
       { name: 'scikit-learn' },
       { name: 'NumPy' },
       { name: 'Pandas' },
+      { name: 'Matplotlib' },
+      { name: 'Seaborn' },
+      { name: 'Manim' },
     ],
   },
   {
@@ -56,6 +64,7 @@ const skillCategories: SkillCategory[] = [
     icon: Server,
     skills: [
       { name: 'Node.js' },
+      { name: 'Express' },
       { name: 'REST' },
       { name: 'GraphQL' },
       { name: 'PostgreSQL' },
@@ -81,7 +90,9 @@ const skillCategories: SkillCategory[] = [
     skills: [
       { name: 'Git' },
       { name: 'Docker' },
+      { name: 'CMake' },
       { name: 'CI/CD' },
+      { name: 'Cloudflare' },
       { name: 'Vercel' },
       { name: 'AWS' },
       { name: 'GCP' },
