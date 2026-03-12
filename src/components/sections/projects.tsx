@@ -40,6 +40,7 @@ const projects = [
     desc: "Reproducible NiriWM rice with automation setup; a single-command bootstrapper that provisions packages, symlinks configs, copies assets, and enables desktop services on Arch Linux.",
     image: "/assets/dots-niri.png",
     tags: ["Niri", "Wayland", "Arch Linux", "Shell", "Ricing", "Unix-Porn"],
+    liveUrl: "https://rice.jr4.in",
     githubUrl: "https://github.com/jR4dh3y/dots-niri",
   },
 
@@ -209,7 +210,7 @@ function FlagshipCard({ project }: { project: ProjectType }) {
                     className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary/90 text-primary-foreground text-xs font-medium backdrop-blur-sm hover:bg-primary transition-colors shadow-lg"
                   >
                     <ArrowUpRight className="w-3.5 h-3.5" />
-                    Live
+                    Website
                   </Link>
                 )}
                 <Link
